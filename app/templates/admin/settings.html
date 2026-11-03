@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Pengaturan Sistem - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<div class="min-h-screen flex bg-background">
+  
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="hidden lg:flex fixed left-0 top-0 bottom-0 w-72 bg-surface-container-lowest z-40 flex-col justify-between border-r border-surface-container shadow-sm">
+    <div class="flex flex-col h-full">
+      <div class="h-20 px-6 flex items-center gap-3 border-b border-surface-container">
+        <div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[24px]">account_balance</span>
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-display font-bold text-base text-primary tracking-tight truncate leading-tight">IZIN MONITOR</span>
+          <span class="text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider truncate">Universitas Hasanuddin</span>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-4 py-4">
+        <nav class="flex flex-col gap-1 text-sm font-medium">
+          <div class="px-2 pt-2 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Pimpinan</div>
+          <a href="{{ url_for('atasan.dashboard') }}" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span>Dashboard Pemantauan</span>
+          </a>
+          <a href="{{ url_for('atasan.persetujuan') }}" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+            <span>Persetujuan Izin</span>
+          </a>
+          <div class="px-2 pt-4 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Administrasi Sistem</div>
+          <a href="{{ url_for('admin.users') }}" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+            <span>Kelola Pengguna</span>
+          </a>
+          <a href="{{ url_for('admin.settings') }}" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-primary-container text-on-primary font-semibold shadow-sm">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span>Pengaturan Sistem</span>
+          </a>
+          <a href="{{ url_for('admin.audit_logs') }}" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-[20px]">history</span>
+            <span>Log Audit Keamanan</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 bg-surface-container-low border-t border-surface-container flex flex-col gap-1">
+        <p class="text-xs font-semibold text-on-surface-variant leading-snug">Izin Monitor Unhas v0.1</p>
+        <p class="text-[11px] text-on-surface-variant leading-snug">Integrasi Non-API Unhas Ontime • Server Jaringan Lokal</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CANVAS -->
+  <div class="flex-1 lg:pl-72 flex flex-col min-w-0">
+    <header class="h-20 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container sticky top-0 z-30 flex items-center justify-between px-6">
+      <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+        <span class="font-semibold text-primary">Admin</span>
+        <span>&rsaquo;</span>
+        <span>Pengaturan Parameter Sistem</span>
+              <a href="{{ url_for('auth.logout') }}" title="Keluar Sistem" class="p-2 rounded-xl text-on-surface-variant hover:text-error hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+        </a></div>
+    </header>
+
+    <main class="flex-1 p-6 flex flex-col gap-6 max-w-4xl">
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container shadow-sm flex flex-col gap-1">
+        <h1 class="font-display font-bold text-2xl text-primary tracking-tight">Konfigurasi Parameter Sistem</h1>
+        <p class="text-xs sm:text-sm text-on-surface-variant">
+          Atur rentang alamat IP subnet kantor yang sah untuk validasi kepulangan pegawai, jam operasional kantor, dan opsi pengujian.
+        </p>
+      </div>
+
+      <form action="{{ url_for('admin.settings') }}" method="POST" class="p-6 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm flex flex-col gap-5">
+        
+        <!-- Office Subnet CIDR -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-secondary text-[18px]">lan</span>
+            Rentang IP Jaringan Kantor Resmi (Subnet CIDR)
+          </label>
+          <textarea
+            name="office_subnets"
+            rows="3"
+            required
+            class="w-full p-3.5 rounded-xl bg-surface-container-low border border-outline-variant font-mono text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary leading-relaxed"
+          >{{ settings.get('office_subnets', '10.15.22.0/24, 127.0.0.1, ::1, 192.168.0.0/16') }}</textarea>
+          <p class="text-[11px] text-on-surface-variant">
+            Pisahkan setiap subnet IP atau alamat IP spesifik dengan tanda koma (contoh: <code>10.15.22.0/24, 192.168.1.0/24, 127.0.0.1</code>).
+          </p>
+        </div>
+
+        <!-- Dev Bypass IP Check Toggle -->
+        <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between gap-4">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-bold text-primary">Mode Dev: Bypass Pengecekan Subnet IP</span>
+            <span class="text-[11px] text-on-surface-variant">
+              Jika diaktifkan, pegawai dapat mengonfirmasi kepulangan dari IP manapun tanpa diblokir (sangat berguna untuk demonstrasi & pengujian).
+            </span>
+          </div>
+          <select name="dev_bypass_ip_check" class="h-10 px-3 rounded-lg border border-outline-variant text-xs font-semibold bg-surface-container-lowest text-primary">
+            <option value="true" {% if settings.get('dev_bypass_ip_check') == 'true' %}selected{% endif %}>Aktif (Bypass)</option>
+            <option value="false" {% if settings.get('dev_bypass_ip_check') == 'false' %}selected{% endif %}>Nonaktif (Wajib IP Kantor)</option>
+          </select>
+        </div>
+
+        <!-- Jam Kerja -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-[18px]">schedule</span>
+              Jam Kerja Kantor
+            </label>
+            <input
+              type="text"
+              name="jam_kerja"
+              value="{{ settings.get('jam_kerja', '08:00 - 16:00 WITA') }}"
+              class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-xs text-on-surface"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-[18px]">inventory_2</span>
+              Masa Simpan Bukti Foto (Hari)
+            </label>
+            <input
+              type="number"
+              name="masa_simpan_bukti"
+              value="{{ settings.get('masa_simpan_bukti', '365') }}"
+              class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-xs text-on-surface"
+            />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full sm:w-auto self-end px-6 h-11 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-md transition-all mt-2"
+        >
+          Simpan Pengaturan
+        </button>
+
+      </form>
+
+    </main>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Verifikasi Bukti Lokasi & IP - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<div class="min-h-screen flex bg-background">
+  
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="hidden lg:flex fixed left-0 top-0 bottom-0 w-72 bg-surface-container-lowest z-40 flex-col justify-between border-r border-surface-container shadow-sm">
+    <div class="flex flex-col h-full">
+      <div class="h-20 px-6 flex items-center gap-3 border-b border-surface-container">
+        <div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[24px]">account_balance</span>
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-display font-bold text-base text-primary tracking-tight truncate leading-tight">IZIN MONITOR</span>
+          <span class="text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider truncate">Universitas Hasanuddin</span>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-4 py-4">
+        <nav class="flex flex-col gap-1 text-sm font-medium">
+          <div class="px-2 pt-2 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Pemantauan Utama</div>
+          <a href="{{ url_for('atasan.dashboard') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">dashboard</span>
+              <span>Dashboard Pemantauan</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.persetujuan') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+              <span>Persetujuan Izin</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.sedang_di_luar') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">door_open</span>
+              <span>Pegawai Sedang di Luar</span>
+            </div>
+          </a>
+          <div class="px-2 pt-4 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Pengawasan & Bukti</div>
+          <a href="{{ url_for('atasan.verifikasi_bukti') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-primary-container text-on-primary font-semibold shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">verified</span>
+              <span>Verifikasi Bukti Lokasi</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.pengecualian') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">update</span>
+              <span>Pengecualian & Perpanjangan</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.rekap') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">summarize</span>
+              <span>Rekap Kehadiran Bawahan</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 bg-surface-container-low border-t border-surface-container flex flex-col gap-1">
+        <p class="text-xs font-semibold text-on-surface-variant leading-snug">Izin Monitor Unhas v0.1</p>
+        <p class="text-[11px] text-on-surface-variant leading-snug">Integrasi Non-API Unhas Ontime • Server Jaringan Lokal</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CANVAS -->
+  <div class="flex-1 lg:pl-72 flex flex-col min-w-0">
+    <header class="h-20 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container sticky top-0 z-30 flex items-center justify-between px-6">
+      <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+        <span class="font-semibold text-primary">Fakultas Teknik</span>
+        <span>&rsaquo;</span>
+        <span>Verifikasi Bukti Lokasi & IP</span>
+              <a href="{{ url_for('auth.logout') }}" title="Keluar Sistem" class="p-2 rounded-xl text-on-surface-variant hover:text-error hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+        </a></div>
+    </header>
+
+    <main class="flex-1 p-6 flex flex-col gap-6">
+
+      <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container shadow-sm flex flex-col gap-1">
+        <div class="flex items-center gap-2 text-xs font-bold text-secondary uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>Audit Bukti Kehadiran Fisik</span>
+        </div>
+        <h1 class="font-display font-bold text-2xl text-primary tracking-tight">
+          Pemeriksaan Sampel Bukti Lokasi & IP
+        </h1>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          Sesuai aturan PRD seksi 8 nomor 6, atasan tidak diwajibkan memeriksa seluruh bukti. Galeri ini disediakan untuk keperluan audit, kecurigaan anomali, atau sampel periodik.
+        </p>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+        {% for e in evidences %}
+        <div class="bg-surface-container-lowest rounded-2xl border border-surface-container shadow-sm overflow-hidden flex flex-col">
+          <!-- Thumbnail with Watermark HUD -->
+          <div class="relative w-full aspect-[4/3] bg-primary group">
+            <img src="/api/evidence/view/{{ e.filename }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Bukti"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-mono flex items-center justify-between">
+              <span>{{ e.waktu_unggah_server.strftime("%H:%M:%S") }} WITA</span>
+              <span class="px-2 py-0.5 rounded bg-black/40 backdrop-blur text-[10px]">IP: {{ e.ip_address }}</span>
+            </div>
+          </div>
+
+          <div class="p-4 flex flex-col gap-2 flex-1 justify-between text-xs">
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-primary">{{ e.request.pegawai.nama }}</span>
+                <span class="text-[10px] text-on-surface-variant font-mono">#{{ e.request.nomor_tiket }}</span>
+              </div>
+              <span class="text-[11px] text-secondary font-medium">{{ e.tipe_bukti }}</span>
+              <p class="text-on-surface-variant text-[11px] line-clamp-2 mt-0.5">
+                {{ e.request.alasan }}
+              </p>
+            </div>
+
+            <div class="pt-2 border-t border-surface-container flex items-center justify-between text-[11px]">
+              <span class="text-on-surface-variant">{{ e.waktu_unggah_server.strftime("%d %b %Y") }}</span>
+              <a href="/api/evidence/view/{{ e.filename }}" target="_blank" class="text-secondary font-semibold hover:underline flex items-center gap-0.5">
+                <span>Buka Foto Asli</span>
+                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="col-span-full p-12 text-center text-xs text-on-surface-variant bg-surface-container-lowest rounded-2xl border border-surface-container">
+          Belum ada foto bukti kehadiran yang tersimpan di sistem.
+        </div>
+        {% endfor %}
+      </div>
+
+    </main>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Pengajuan Izin Harian - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.beranda') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Izin Harian Pegawai</h1>
+    </div>
+    <span class="text-xs text-secondary font-medium uppercase tracking-wider">Multi-Hari</span>
+  </div>
+</header>
+
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-20 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-5">
+
+    <div class="flex flex-col gap-1 pt-1">
+      <div class="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] font-semibold uppercase tracking-wider">
+        <span class="material-symbols-outlined text-[13px]">calendar_month</span>
+        PENGAJUAN TANGGAL RESMI
+      </div>
+      <h1 class="font-display text-2xl font-bold text-primary tracking-tight">
+        Formulir Izin Harian
+      </h1>
+      <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+        Izin tidak masuk kantor untuk alasan sakit, cuti resmi, atau penugasan luar kota.
+      </p>
+    </div>
+
+    <form action="{{ url_for('pegawai.ajukan_harian') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5">
+
+      <!-- Jenis Izin Harian -->
+      <div class="flex flex-col gap-1.5">
+        <label for="leave_type_id" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary text-[18px]">category</span>
+          Jenis Izin
+        </label>
+        <select
+          id="leave_type_id"
+          name="leave_type_id"
+          required
+          class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest"
+        >
+          {% for lt in leave_types %}
+          <option value="{{ lt.id }}">{{ lt.nama }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Rentang Tanggal -->
+      <div class="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-surface-container-low border border-surface-container">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="tanggal_mulai">
+            <span class="material-symbols-outlined text-[15px] text-secondary">date_range</span>
+            Tanggal Mulai
+          </label>
+          <input
+            type="date"
+            id="tanggal_mulai"
+            name="tanggal_mulai"
+            required
+            class="w-full h-11 px-3 rounded-xl bg-surface-container-lowest border border-outline-variant text-sm font-medium text-on-surface"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="tanggal_selesai">
+            <span class="material-symbols-outlined text-[15px] text-secondary">event_available</span>
+            Tanggal Selesai
+          </label>
+          <input
+            type="date"
+            id="tanggal_selesai"
+            name="tanggal_selesai"
+            required
+            class="w-full h-11 px-3 rounded-xl bg-surface-container-lowest border border-outline-variant text-sm font-medium text-on-surface"
+          />
+        </div>
+      </div>
+
+      <!-- Alasan -->
+      <div class="flex flex-col gap-1.5">
+        <label for="alasan" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary text-[18px]">notes</span>
+          Keterangan & Alasan Lengkap
+        </label>
+        <textarea
+          id="alasan"
+          name="alasan"
+          required
+          rows="3"
+          placeholder="Tuliskan keterangan detail izin Anda..."
+          class="w-full p-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest leading-relaxed"
+        ></textarea>
+      </div>
+
+      <!-- Lampiran Dokumen Opsional (Surat Sakit / Surat Tugas) -->
+      <div class="flex flex-col gap-1.5">
+        <label for="lampiran" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary text-[18px]">attach_file</span>
+          Lampiran Berkas Pendukung (Opsional)
+        </label>
+        <input
+          type="file"
+          id="lampiran"
+          name="lampiran"
+          accept=".pdf,.jpg,.jpeg,.png"
+          class="w-full p-2.5 rounded-xl bg-surface-container-low border border-outline-variant text-xs text-on-surface file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-primary file:text-on-primary hover:file:bg-primary-container"
+        />
+        <span class="text-[11px] text-on-surface-variant">Surat dokter, formulir cuti, atau surat tugas (PDF/Foto maks. 10 MB).</span>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full h-12 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99] mt-2"
+      >
+        <span class="material-symbols-outlined text-[18px]">send</span>
+        <span>Kirim Pengajuan Izin Harian</span>
+      </button>
+
+    </form>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('tanggal_mulai').value = today;
+  document.getElementById('tanggal_selesai').value = today;
+</script>
+{% endblock %}

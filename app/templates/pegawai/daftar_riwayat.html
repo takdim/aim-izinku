@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Riwayat Izin Pegawai - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<!-- TOP FIXED BAR -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.beranda') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Riwayat Izin Saya</h1>
+    </div>
+    <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-secondary text-xs font-semibold">
+      <span class="material-symbols-outlined text-[14px]">domain</span>
+      <span>FT Unhas</span>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-24 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-4">
+
+    <!-- 1. METRICS BENTO STRIP -->
+    <section class="bg-surface-container-lowest rounded-2xl p-4 border border-surface-container shadow-sm flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-low text-xs font-bold text-primary">
+          <span class="material-symbols-outlined text-secondary text-[16px]">calendar_month</span>
+          <span>Bulan Berjalan (2026)</span>
+        </div>
+        <span class="text-[11px] text-on-surface-variant">Arsip Kepegawaian</span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs text-on-surface-variant font-medium">
+            <span>Total Agenda</span>
+            <span class="material-symbols-outlined text-[16px] text-secondary">assignment</span>
+          </div>
+          <div class="my-1.5 flex items-baseline gap-1">
+            <span class="font-display font-bold text-2xl text-primary">{{ all_count }}</span>
+            <span class="text-xs text-on-surface-variant">Izin</span>
+          </div>
+          <div class="flex items-center gap-1 text-emerald-600 text-[11px] font-semibold">
+            <span class="material-symbols-outlined text-[14px]">verified</span>
+            <span>Tercatat Resmi</span>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low rounded-xl p-3 flex flex-col justify-between">
+          <div class="flex items-center justify-between text-xs text-on-surface-variant font-medium">
+            <span>Izin Selesai</span>
+            <span class="material-symbols-outlined text-[16px] text-emerald-600">task_alt</span>
+          </div>
+          <div class="my-1.5 flex items-baseline gap-1">
+            <span class="font-display font-bold text-2xl text-emerald-600">{{ done_count }}</span>
+            <span class="text-xs text-on-surface-variant">Selesai</span>
+          </div>
+          <div class="text-[11px] text-on-surface-variant">
+            Aktif di luar: <strong class="text-primary">{{ outside_count }}</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SEARCH & FILTER CONTROLS -->
+    <section class="flex flex-col gap-2.5">
+      <form action="{{ url_for('pegawai.riwayat') }}" method="GET" class="relative w-full">
+        <input type="hidden" name="status" value="{{ status_filter }}"/>
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+        <input
+          type="text"
+          name="q"
+          value="{{ search_query }}"
+          placeholder="Cari tiket, tujuan, atau alasan..."
+          class="w-full h-11 pl-10 pr-10 bg-surface-container-lowest border border-surface-container rounded-xl text-xs text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary shadow-sm"
+        />
+        {% if search_query %}
+        <a href="{{ url_for('pegawai.riwayat', status=status_filter) }}" class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+        </a>
+        {% endif %}
+      </form>
+
+      <!-- Horizontally Scrollable Status Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto py-1">
+        <a href="{{ url_for('pegawai.riwayat', status='semua', q=search_query) }}" class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all
+          {% if status_filter == 'semua' %}bg-primary text-on-primary{% else %}bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-surface-container{% endif %}">
+          <span>Semua</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-white/20 text-[10px]">{{ all_count }}</span>
+        </a>
+
+        <a href="{{ url_for('pegawai.riwayat', status='selesai', q=search_query) }}" class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 shadow-sm transition-all
+          {% if status_filter == 'selesai' %}bg-primary text-on-primary font-semibold{% else %}bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-surface-container{% endif %}">
+          <span>Selesai</span>
+          <span class="text-[10px] text-outline">{{ done_count }}</span>
+        </a>
+
+        <a href="{{ url_for('pegawai.riwayat', status='di_luar', q=search_query) }}" class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 shadow-sm transition-all
+          {% if status_filter == 'di_luar' %}bg-primary text-on-primary font-semibold{% else %}bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-surface-container{% endif %}">
+          <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+          <span>Sedang di Luar</span>
+          <span class="text-[10px] text-outline">{{ outside_count }}</span>
+        </a>
+
+        <a href="{{ url_for('pegawai.riwayat', status='menunggu', q=search_query) }}" class="whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 shadow-sm transition-all
+          {% if status_filter == 'menunggu' %}bg-primary text-on-primary font-semibold{% else %}bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-surface-container{% endif %}">
+          <span>Menunggu</span>
+          <span class="text-[10px] text-outline">{{ pending_count }}</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. CARDS LIST -->
+    <section class="flex flex-col gap-3">
+      {% for r in requests_list %}
+      <a href="{{ url_for('pegawai.detail', request_id=r.id) }}" class="p-4 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm hover:shadow-md hover:border-secondary transition-all flex flex-col gap-2.5">
+        
+        <div class="flex items-center justify-between text-xs">
+          <div class="flex items-center gap-1.5">
+            <span class="font-mono font-bold text-primary">#{{ r.nomor_tiket }}</span>
+            <span class="text-on-surface-variant">• {{ r.tanggal_mulai|date_format }}</span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider
+            {% if r.status in ('selesai', 'disetujui') %}bg-emerald-100 text-emerald-800
+            {% elif r.status == 'sedang_di_luar' %}bg-sky-100 text-sky-800
+            {% elif r.status in ('terlambat_kembali', 'selesai_terlambat', 'ditolak') %}bg-error-container text-on-error-container
+            {% else %}bg-amber-100 text-amber-800{% endif %}">
+            {{ r.status.replace('_', ' ') }}
+          </span>
+        </div>
+
+        <div class="flex flex-col gap-0.5">
+          <h3 class="font-display font-bold text-sm text-primary leading-snug">{{ r.alasan }}</h3>
+          {% if r.tujuan %}
+          <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+            <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+            <span class="truncate">{{ r.tujuan }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="pt-2 border-t border-surface-container flex items-center justify-between text-[11px] text-on-surface-variant">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+            {% if r.kategori == 'keluar_sementara' %}
+              <span>{{ r.jam_pergi|time_format }} - {{ r.jam_pulang_rencana|time_format }} WITA</span>
+            {% else %}
+              <span>{{ r.tanggal_mulai|date_format }} s.d {{ r.tanggal_selesai|date_format }}</span>
+            {% endif %}
+          </div>
+          <span class="text-secondary font-semibold flex items-center">
+            Detail <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+          </span>
+        </div>
+
+      </a>
+      {% else %}
+      <div class="p-8 rounded-2xl bg-surface-container-lowest border border-surface-container text-center text-xs text-on-surface-variant flex flex-col items-center gap-2">
+        <span class="material-symbols-outlined text-[32px] text-outline">history_toggle_off</span>
+        <span>Tidak ada permohonan izin yang sesuai filter.</span>
+      </div>
+      {% endfor %}
+    </section>
+
+  </div>
+</main>
+
+<!-- BOTTOM NAVIGATION -->
+<nav class="fixed bottom-0 w-full z-40 pb-safe bg-surface-container-lowest/95 backdrop-blur-md border-t border-surface-container shadow-lg">
+  <div class="h-14 max-w-xl mx-auto px-6 flex items-center justify-around">
+    <a href="{{ url_for('pegawai.beranda') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[10px]">Beranda</span>
+    </a>
+    <a href="{{ url_for('pegawai.ajukan_keluar') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">add_circle</span>
+      <span class="text-[10px]">Ajukan</span>
+    </a>
+    <a href="{{ url_for('pegawai.riwayat') }}" class="flex flex-col items-center gap-0.5 text-secondary font-bold">
+      <span class="material-symbols-outlined text-[22px]">history</span>
+      <span class="text-[10px]">Riwayat</span>
+    </a>
+    {% if current_user.is_atasan %}
+    <a href="{{ url_for('atasan.dashboard') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[10px]">Pimpinan</span>
+    </a>
+    {% endif %}
+  </div>
+</nav>
+{% endblock %}

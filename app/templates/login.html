@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Masuk - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<div class="min-h-screen w-full flex flex-col justify-between bg-surface relative overflow-hidden">
+  
+  <!-- Subtle decorative campus background blur -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+
+  <!-- Top bar -->
+  <header class="w-full px-6 py-4 flex items-center justify-between border-b border-surface-container bg-surface/80 backdrop-blur-md">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold shadow-sm">
+        <span class="material-symbols-outlined text-[24px]">account_balance</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-display font-bold text-lg text-primary leading-tight">IZIN MONITOR</span>
+        <span class="text-xs text-secondary font-medium tracking-wide uppercase">Fakultas Teknik Universitas Hasanuddin</span>
+      </div>
+    </div>
+    
+    <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low text-xs text-on-surface-variant font-medium">
+      <span class="w-2 h-2 rounded-full {% if is_office_ip %}bg-emerald-500 animate-pulse{% else %}bg-amber-500{% endif %}"></span>
+      <span>IP Anda: {{ current_ip }} ({{ office_ip_message }})</span>
+    </div>
+  </header>
+
+  <!-- Login Card Content -->
+  <main class="flex-1 flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-xl border border-surface-container p-6 sm:p-8 flex flex-col gap-6">
+      
+      <div class="flex flex-col gap-1.5 text-center">
+        <div class="inline-flex items-center justify-center gap-1.5 self-center px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold uppercase tracking-wider mb-1">
+          <span class="material-symbols-outlined text-[14px]">security</span>
+          Sistem Terpadu Internal
+        </div>
+        <h1 class="font-display text-2xl font-bold text-primary tracking-tight">Masuk ke Izin Monitor</h1>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          Gunakan NIP atau email institusi Anda untuk mengakses sistem pemantauan izin pegawai.
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <form action="{{ url_for('auth.login') }}" method="POST" class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1.5">
+          <label for="nip" class="text-xs font-semibold text-on-surface uppercase tracking-wide flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px] text-secondary">badge</span>
+            NIP / Username
+          </label>
+          <input
+            type="text"
+            id="nip"
+            name="nip"
+            required
+            placeholder="Contoh: 199402282020121004"
+            class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label for="password" class="text-xs font-semibold text-on-surface uppercase tracking-wide flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px] text-secondary">lock</span>
+            Kata Sandi
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="••••••••"
+            class="w-full h-11 px-3.5 rounded-lg bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full h-11 mt-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99]"
+        >
+          <span>Masuk Sistem</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </button>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-4 text-center text-xs text-on-surface-variant border-t border-surface-container bg-surface/50">
+    <p>Izin Monitor v0.1 • Universitas Hasanuddin • Server Jaringan Lokal FT</p>
+    <p class="text-[11px] mt-0.5 opacity-80">Pendamping Non-API Unhas Ontime • Menjamin Integritas Kehadiran & Transparansi</p>
+  </footer>
+
+</div>
+{% endblock %}

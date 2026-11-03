@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Detail Izin #{{ leave_req.nomor_tiket }} - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.riwayat') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Detail Izin</h1>
+    </div>
+    <span class="font-mono text-xs text-secondary font-bold">#{{ leave_req.nomor_tiket }}</span>
+  </div>
+</header>
+
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-20 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-4">
+
+    <!-- 1. TICKET HEADER CARD -->
+    <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
+          {% if leave_req.status in ('selesai', 'disetujui') %}bg-emerald-100 text-emerald-800
+          {% elif leave_req.status == 'sedang_di_luar' %}bg-sky-100 text-sky-800
+          {% elif leave_req.status in ('terlambat_kembali', 'selesai_terlambat', 'ditolak') %}bg-error-container text-on-error-container
+          {% else %}bg-amber-100 text-amber-800{% endif %}">
+          {{ leave_req.status.replace('_', ' ') }}
+        </span>
+        <span class="text-xs text-on-surface-variant font-medium">{{ leave_req.tanggal_mulai|date_format }}</span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <h2 class="font-display font-bold text-lg text-primary leading-snug">{{ leave_req.alasan }}</h2>
+        {% if leave_req.tujuan %}
+        <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+          <span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+          <span class="font-medium">{{ leave_req.tujuan }}</span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-2 border-t border-surface-container text-xs">
+        <div>
+          <span class="text-[11px] text-on-surface-variant">Jenis Izin</span>
+          <p class="font-semibold text-primary">{{ leave_req.leave_type.nama }}</p>
+        </div>
+        <div>
+          <span class="text-[11px] text-on-surface-variant">Waktu Izin</span>
+          <p class="font-semibold text-primary">
+            {% if leave_req.kategori == 'keluar_sementara' %}
+              {{ leave_req.jam_pergi|time_format }} - {{ leave_req.jam_pulang_rencana|time_format }} WITA
+            {% else %}
+              {{ leave_req.tanggal_mulai|date_format }} s.d {{ leave_req.tanggal_selesai|date_format }}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. STATUS STEPPER TIMELINE -->
+    <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm flex flex-col gap-4">
+      <h3 class="font-display font-bold text-xs text-on-surface uppercase tracking-wider">Jejak Status & Persetujuan</h3>
+
+      <div class="flex flex-col relative pl-6 border-l-2 border-secondary/30 gap-6 my-1">
+        
+        <!-- Step 1: Diajukan -->
+        <div class="relative flex flex-col gap-0.5">
+          <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface"></span>
+          <span class="text-xs font-bold text-primary">Permohonan Diajukan</span>
+          <span class="text-[11px] text-on-surface-variant">{{ leave_req.created_at.strftime("%d %b %Y, %H:%M") }} WITA oleh Anda</span>
+        </div>
+
+        <!-- Step 2: Persetujuan Atasan -->
+        {% if approvals %}
+          {% for a in approvals %}
+          <div class="relative flex flex-col gap-0.5">
+            <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full {% if a.keputusan == 'disetujui' %}bg-emerald-600{% else %}bg-error{% endif %} border-2 border-surface"></span>
+            <span class="text-xs font-bold text-primary">{{ a.keputusan.capitalize() }} oleh Atasan</span>
+            <span class="text-[11px] text-on-surface-variant">{{ a.approver.nama }} • {{ a.waktu.strftime("%d %b %Y, %H:%M") }} WITA</span>
+            {% if a.catatan %}
+            <div class="mt-1 p-2.5 rounded-xl bg-surface-container-low text-xs text-on-surface leading-snug">
+              <span class="font-semibold">Catatan:</span> {{ a.catatan }}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        {% else %}
+        <div class="relative flex flex-col gap-0.5 opacity-60">
+          <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-outline-variant border-2 border-surface"></span>
+          <span class="text-xs font-medium text-on-surface">Menunggu Review Atasan</span>
+        </div>
+        {% endif %}
+
+        <!-- Step 3: Sedang di luar -->
+        {% if leave_req.status in ('sedang_di_luar', 'terlambat_kembali', 'selesai', 'selesai_terlambat', 'selesai_pengecualian') %}
+        <div class="relative flex flex-col gap-0.5">
+          <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-sky-600 border-2 border-surface"></span>
+          <span class="text-xs font-bold text-primary">Meninggalkan Kantor</span>
+          <span class="text-[11px] text-on-surface-variant">Pukul {{ leave_req.jam_pergi|time_format }} WITA</span>
+        </div>
+        {% endif %}
+
+        <!-- Step 4: Selesai -->
+        {% if leave_req.status in ('selesai', 'selesai_terlambat', 'selesai_pengecualian') %}
+        <div class="relative flex flex-col gap-0.5">
+          <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-emerald-600 border-2 border-surface"></span>
+          <span class="text-xs font-bold text-primary">Izin Ditutup</span>
+          <span class="text-[11px] text-on-surface-variant">
+            Kembali pukul {{ leave_req.jam_kembali_aktual.strftime("%H:%M") if leave_req.jam_kembali_aktual else '-' }} WITA
+          </span>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- 3. BUKTI KEHADIRAN (IF ANY) -->
+    {% if evidences %}
+    <div class="p-5 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm flex flex-col gap-3">
+      <h3 class="font-display font-bold text-xs text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-secondary text-[18px]">photo_library</span>
+        Bukti Presensi Fisik
+      </h3>
+
+      <div class="grid grid-cols-1 gap-3">
+        {% for e in evidences %}
+        <div class="p-3 rounded-xl bg-surface-container-low border border-surface-container flex gap-3 items-center">
+          <a href="/api/evidence/view/{{ e.filename }}" target="_blank" class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-high shrink-0 border border-surface-container">
+            <img src="/api/evidence/view/{{ e.filename }}" class="w-full h-full object-cover" alt="Bukti"/>
+          </a>
+          <div class="flex flex-col min-w-0 flex-1 text-xs">
+            <span class="font-bold text-primary truncate">{{ e.tipe_bukti }}</span>
+            <span class="text-[11px] text-on-surface-variant">{{ e.waktu_unggah_server.strftime("%d %b %Y, %H:%M") }} WITA</span>
+            <span class="text-[10px] text-secondary font-mono mt-0.5">IP: {{ e.ip_address }}</span>
+            {% if e.keterangan %}
+            <p class="text-[11px] text-on-surface mt-1 italic leading-snug">"{{ e.keterangan }}"</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- 4. CANCEL BUTTON IF STILL DIAJUKAN -->
+    {% if leave_req.status == 'diajukan' %}
+    <form action="{{ url_for('pegawai.batalkan', request_id=leave_req.id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pengajuan izin ini?');">
+      <button type="submit" class="w-full h-11 rounded-xl bg-surface-container hover:bg-error-container text-error font-semibold text-xs transition-colors flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">cancel</span>
+        <span>Batalkan Pengajuan Izin Ini</span>
+      </button>
+    </form>
+    {% endif %}
+
+  </div>
+</main>
+{% endblock %}

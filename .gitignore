@@ -1,0 +1,49 @@
+# Python & Virtual Environment
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+
+# Database, Seed, & Data Files
+seed.py
+seed/
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+
+# Sensitive Storage & Uploads (Evidences / Foto Kehadiran Pegawai)
+storage_evidences/
+storage/
+uploads/
+scratch/
+
+# Logs & Temporary Files
+*.log
+cookies.txt
+*.tmp
+*.swp
+*.swo
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

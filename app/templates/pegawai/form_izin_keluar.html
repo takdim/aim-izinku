@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block title %}Pengajuan Izin Keluar Sementara - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<!-- TOP FIXED BAR -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.beranda') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Izin Keluar Sementara</h1>
+    </div>
+    <span class="text-xs text-secondary font-medium uppercase tracking-wider">Jam Kerja</span>
+  </div>
+</header>
+
+<!-- MAIN FORM -->
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-20 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-5">
+    
+    <!-- Title banner -->
+    <div class="flex flex-col gap-1 pt-1">
+      <div class="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[11px] font-semibold uppercase tracking-wider">
+        <span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">timer</span>
+        PRESENSI AKTIF HARI INI
+      </div>
+      <h1 class="font-display text-2xl font-bold text-primary tracking-tight">
+        Pengajuan Izin Keluar Sementara
+      </h1>
+      <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+        Izin resmi meninggalkan area kantor/kampus pada jam kerja efektif (WITA).
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <form action="{{ url_for('pegawai.ajukan_keluar') }}" method="POST" class="flex flex-col gap-5" id="leave-form">
+      
+      <!-- 1. Pilihan Jenis Izin (Segmented Chips) -->
+      <div class="flex flex-col gap-2.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-secondary text-[18px]">category</span>
+            Jenis Kepentingan
+          </label>
+          <span class="text-[11px] text-on-surface-variant font-medium">Pilih salah satu</span>
+        </div>
+
+        <div class="flex flex-col gap-2" id="chip-group">
+          <!-- Kedinasan -->
+          <label class="chip-label relative flex items-center p-3.5 rounded-2xl bg-primary-container text-on-primary shadow-sm cursor-pointer border border-primary/20 transition-all">
+            <input type="radio" name="jenis_izin" value="kedinasan" checked class="sr-only"/>
+            <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center mr-3 shrink-0">
+              <span class="material-symbols-outlined text-[20px] text-secondary-container">assignment</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-xs leading-snug">Keperluan Kedinasan</div>
+              <div class="text-[11px] text-on-primary-container opacity-90 truncate">Rapat eksternal, penugasan rektorat/fakultas</div>
+            </div>
+            <span class="material-symbols-outlined text-[20px] text-secondary-container ml-2 check-icon" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </label>
+
+          <!-- Khusus Kantor -->
+          <label class="chip-label relative flex items-center p-3.5 rounded-2xl bg-surface-container-low text-on-surface shadow-sm cursor-pointer border border-surface-container transition-all">
+            <input type="radio" name="jenis_izin" value="khusus" class="sr-only"/>
+            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center mr-3 shrink-0">
+              <span class="material-symbols-outlined text-[20px] text-secondary">corporate_fare</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-xs leading-snug">Keperluan Khusus Kantor</div>
+              <div class="text-[11px] text-on-surface-variant truncate">Logistik, pengadaan darurat, urusan operasional unit</div>
+            </div>
+            <span class="material-symbols-outlined text-[20px] text-secondary-container ml-2 check-icon hidden" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </label>
+
+          <!-- Pribadi Mendesak -->
+          <label class="chip-label relative flex items-center p-3.5 rounded-2xl bg-surface-container-low text-on-surface shadow-sm cursor-pointer border border-surface-container transition-all">
+            <input type="radio" name="jenis_izin" value="pribadi" class="sr-only"/>
+            <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center mr-3 shrink-0">
+              <span class="material-symbols-outlined text-[20px] text-secondary">person_alert</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-xs leading-snug">Keperluan Pribadi Mendesak</div>
+              <div class="text-[11px] text-on-surface-variant truncate">Kebutuhan mendesak, medis darurat, perbankan, keluarga</div>
+            </div>
+            <span class="material-symbols-outlined text-[20px] text-secondary-container ml-2 check-icon hidden" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. Waktu & Estimasi Durasi -->
+      <div class="p-4 rounded-2xl bg-surface-container-low border border-surface-container shadow-sm flex flex-col gap-3.5">
+        <div class="flex items-center justify-between pb-1 border-b border-surface-container">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">calendar_clock</span>
+            <span class="font-display font-bold text-xs text-on-surface uppercase tracking-wider">Jadwal & Durasi (WITA)</span>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-[11px] font-semibold">Hari Ini</span>
+        </div>
+
+        <!-- Tanggal Read-Only -->
+        <div class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-surface-container border border-surface-container-highest">
+          <div class="w-7 h-7 rounded bg-surface flex items-center justify-center text-secondary">
+            <span class="material-symbols-outlined text-[18px]">event</span>
+          </div>
+          <div class="flex flex-col min-w-0 flex-1">
+            <span class="text-[10px] text-on-surface-variant">Tanggal Efektif</span>
+            <span class="font-medium text-xs text-on-surface">{{ today_str }}</span>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
+        </div>
+
+        <!-- Grid Jam Berangkat & Jam Pulang -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="jam_pergi">
+              <span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+              Jam Pergi
+            </label>
+            <input
+              type="time"
+              id="jam_pergi"
+              name="jam_pergi"
+              required
+              class="w-full h-11 px-3 rounded-xl bg-surface-container-lowest border border-outline-variant text-sm font-semibold text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-semibold text-on-surface-variant flex items-center gap-1" for="jam_pulang_rencana">
+              <span class="material-symbols-outlined text-[15px] text-secondary">alarm_on</span>
+              Jam Pulang Rencana
+            </label>
+            <input
+              type="time"
+              id="jam_pulang_rencana"
+              name="jam_pulang_rencana"
+              required
+              class="w-full h-11 px-3 rounded-xl bg-surface-container-lowest border border-outline-variant text-sm font-semibold text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+            />
+          </div>
+        </div>
+
+        <div id="duration-badge" class="hidden px-3 py-1.5 rounded-xl bg-secondary-fixed/40 text-on-secondary-fixed text-xs font-medium flex items-center justify-between">
+          <span>Estimasi Durasi Izin:</span>
+          <span id="duration-text" class="font-bold">--</span>
+        </div>
+      </div>
+
+      <!-- 3. Tujuan / Lokasi -->
+      <div class="flex flex-col gap-1.5">
+        <label for="tujuan" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary text-[18px]">near_me</span>
+          Tujuan / Instansi yang Dikunjungi
+        </label>
+        <input
+          type="text"
+          id="tujuan"
+          name="tujuan"
+          required
+          placeholder="Contoh: BNI KCP Unhas, Gedung Rektorat Lt. 2, Kantor Pos..."
+          class="w-full h-11 px-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all"
+        />
+      </div>
+
+      <!-- 4. Alasan / Keperluan -->
+      <div class="flex flex-col gap-1.5">
+        <label for="alasan" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-secondary text-[18px]">notes</span>
+          Rincian Alasan Kepentingan
+        </label>
+        <textarea
+          id="alasan"
+          name="alasan"
+          required
+          rows="3"
+          placeholder="Jelaskan agenda atau keperluan Anda secara jelas..."
+          class="w-full p-3.5 rounded-xl bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-surface-container-lowest transition-all leading-relaxed"
+        ></textarea>
+      </div>
+
+      <!-- 5. Informative SLA & Policy Box -->
+      <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+        <span class="material-symbols-outlined text-[20px] text-amber-700 shrink-0 mt-0.5">info</span>
+        <div class="flex flex-col gap-1 leading-relaxed">
+          <span class="font-bold">Ketentuan Izin Keluar Sementara:</span>
+          <span>1. Wajib disetujui atasan sebelum meninggalkan kantor.</span>
+          <span>2. Saat kembali, Anda wajib menekan "Sudah Kembali" dan mengunggah foto bukti fisik (di meja kerja / kantor).</span>
+          <span>3. Melewati batas jam pulang tanpa izin akan otomatis tercatat sebagai "Terlambat Kembali".</span>
+        </div>
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button
+        type="submit"
+        class="w-full h-12 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99]"
+      >
+        <span class="material-symbols-outlined text-[18px]">send</span>
+        <span>Kirim Pengajuan Izin</span>
+      </button>
+
+    </form>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Set default times (e.g. current hour rounded up)
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const curTime = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  
+  const later = new Date(now.getTime() + 90 * 60000);
+  const laterTime = `${pad(later.getHours())}:${pad(later.getMinutes())}`;
+
+  document.getElementById('jam_pergi').value = curTime;
+  document.getElementById('jam_pulang_rencana').value = laterTime;
+  updateDuration();
+
+  // Chip selection interactive toggle
+  const chipLabels = document.querySelectorAll('.chip-label');
+  chipLabels.forEach(label => {
+    label.addEventListener('click', () => {
+      chipLabels.forEach(l => {
+        l.classList.remove('bg-primary-container', 'text-on-primary', 'border-primary/20');
+        l.classList.add('bg-surface-container-low', 'text-on-surface', 'border-surface-container');
+        l.querySelector('.check-icon').classList.add('hidden');
+      });
+      label.classList.add('bg-primary-container', 'text-on-primary', 'border-primary/20');
+      label.classList.remove('bg-surface-container-low', 'text-on-surface', 'border-surface-container');
+      label.querySelector('.check-icon').classList.remove('hidden');
+    });
+  });
+
+  // Calculate duration
+  const startIn = document.getElementById('jam_pergi');
+  const endIn = document.getElementById('jam_pulang_rencana');
+  startIn.addEventListener('change', updateDuration);
+  endIn.addEventListener('change', updateDuration);
+
+  function updateDuration() {
+    const s = startIn.value.split(':');
+    const e = endIn.value.split(':');
+    if (s.length === 2 && e.length === 2) {
+      const sMin = parseInt(s[0]) * 60 + parseInt(s[1]);
+      const eMin = parseInt(e[0]) * 60 + parseInt(e[1]);
+      const diff = eMin - sMin;
+      const badge = document.getElementById('duration-badge');
+      const text = document.getElementById('duration-text');
+      if (diff > 0) {
+        const h = Math.floor(diff / 60);
+        const m = diff % 60;
+        text.innerText = `${h > 0 ? h + ' Jam ' : ''}${m} Menit`;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+  }
+</script>
+{% endblock %}

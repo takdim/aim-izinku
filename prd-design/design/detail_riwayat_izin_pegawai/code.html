@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><title>Izin Monitor Unhas</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed": "#001944", "on-secondary-fixed-variant": "#1b448d", "on-tertiary-fixed": "#0d1c2e", "on-background": "#131b2e", "error": "#ba1a1a", "tertiary-container": "#182638", "surface-container-highest": "#dae2fd", "on-secondary": "#ffffff", "surface-bright": "#faf8ff", "outline": "#74777f", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c4c6cf", "tertiary": "#031122", "inverse-primary": "#b1c7f0", "tertiary-fixed-dim": "#b9c7df", "surface": "#faf8ff", "secondary-container": "#8eafff", "surface-container-high": "#e2e7ff", "on-tertiary-container": "#7f8da3", "on-error": "#ffffff", "surface-container-low": "#f2f3ff", "inverse-surface": "#283044", "on-primary-container": "#778db2", "on-surface": "#131b2e", "surface-tint": "#495f82", "on-secondary-container": "#164089", "primary-container": "#0b2545", "on-tertiary-fixed-variant": "#3a485b", "on-error-container": "#93000a", "secondary": "#385ca6", "surface-dim": "#d2d9f4", "on-primary-fixed-variant": "#314769", "surface-variant": "#dae2fd", "on-primary": "#ffffff", "secondary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#d5e3fc", "background": "#faf8ff", "secondary-fixed": "#d9e2ff", "error-container": "#ffdad6", "on-surface-variant": "#44474e", "primary": "#001026", "on-primary-fixed": "#001c3b", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b1c7f0", "surface-container": "#eaedff", "primary-fixed": "#d5e3ff" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-desktop": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem" }, fontFamily: { "label-lg": ["Inter"], "body-md": ["Inter"], "data-tabular": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "data-metric": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "data-tabular": ["13px", { lineHeight: "18px", fontWeight: "500" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "display-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "display-lg": ["36px", { lineHeight: "44px", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }], "data-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; background-color: #faf8ff; } body { overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 -ml-2 flex items-center justify-center text-primary hover:text-secondary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-primary tracking-tight truncate">Detail Izin</h1></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe px-space-md bg-surface"><div class="flex flex-col w-full pb-8 space-y-4">
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-secondary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-space-xs mb-3">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-primary font-data-tabular text-label-sm tracking-wide">#IZN-2026-8812</span>
+<span class="flex items-center gap-1 px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">business_center</span>
+          Dinas Kantor
+        </span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+        SELESAI • TEPAT WAKTU
+      </div>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary leading-tight mb-2">
+      Pengurusan Buku Giro &amp; Rekening Operasional Unit FT Unhas
+    </h2>
+<div class="flex flex-col gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-secondary text-[16px]">calendar_today</span>
+<span class="font-data-tabular font-medium">Senin, 3 November 2026</span>
+<span class="text-outline-variant">•</span>
+<span class="font-data-tabular">09:00 - 10:32 WITA</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[16px]">account_balance</span>
+<span class="truncate">Bank BNI KCP Unhas Tamalanrea, Kampus Tamalanrea Makassar</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">timelapse</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary">Kalkulasi Waktu &amp; Kepatuhan</span>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container-high text-secondary">100% Taat Waktu</span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-0.5">Rencana Keluar</span>
+<span class="font-headline-sm text-headline-sm text-primary font-data-tabular">09:00 - 10:45</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant mt-0.5">Est. 1 jam 45 mnt</span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-secondary block mb-0.5">Realisasi Selesai</span>
+<span class="font-headline-sm text-headline-sm text-primary font-data-tabular">10:32 WITA</span>
+<span class="block text-label-sm font-label-sm text-secondary mt-0.5 font-medium">+13 mnt lebih awal</span>
+</div>
+</div>
+<div class="bg-surface-container-high/60 rounded-lg p-2.5 flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="text-on-surface font-body-md text-body-sm">Total Waktu Digunakan</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary font-data-tabular">1j 32m</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px]">history_edu</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary">Jejak Audit Status (FR-12)</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-data-tabular">4 Pembaruan</span>
+</div>
+<div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-highest">
+<div class="relative group">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]">done</span>
+</span>
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md text-primary font-medium">Permohonan Dikirimkan</span>
+<span class="font-data-tabular text-body-sm text-on-surface-variant">08:40 WITA</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-0.5">Oleh: Faisal Basri, A.Md. (Teknisi Jaringan Lab)</span>
+</div>
+</div>
+<div class="relative group">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]">done</span>
+</span>
+<div class="flex flex-col bg-surface-container-low rounded-lg p-2.5 mt-0.5">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md text-primary font-semibold">Disetujui Penjamin Unit</span>
+<span class="font-data-tabular text-body-sm text-on-surface-variant">08:52 WITA</span>
+</div>
+<span class="text-body-sm font-medium text-primary mt-0.5">Dr. Ir. Faizal Arya, M.Eng.</span>
+<p class="text-body-sm text-on-surface-variant mt-1.5 italic bg-surface-container-lowest/80 p-2 rounded">
+            “Disetujui. Koordinasikan segera dengan bagian bendahara setelah buku giro diterima.”
+          </p>
+</div>
+</div>
+<div class="relative group">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]">departure_board</span>
+</span>
+<div class="flex flex-col">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md text-primary font-medium">Mulai Keluar Kampus</span>
+<span class="font-data-tabular text-body-sm text-on-surface-variant">09:00 WITA</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-0.5">Status diubah otomatis menjadi “Sedang di Luar”</span>
+</div>
+</div>
+<div class="relative group">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-sm ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</span>
+<div class="flex flex-col bg-surface-container-high/40 rounded-lg p-2.5 mt-0.5">
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-md text-label-md text-secondary font-semibold">Tiba &amp; Konfirmasi Selesai</span>
+<span class="font-data-tabular text-body-sm text-secondary font-semibold">10:32 WITA</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-0.5">Tervalidasi Subnet FT-Unhas &amp; Swafoto Berkas</span>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded bg-surface-container-highest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">attachment</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary">Arsip Bukti &amp; Validasi Fisik</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Terkunci Server
+      </span>
+</div>
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of an administrative desk at Universitas Hasanuddin showing a yellow bank checkbook envelope stamped with official university seals and documents, indoor office warm lighting, photorealistic sharp documentation view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxexMNMQX8EpoJ9Kqw-cVpAQYlEWCW97R-3HM6Jx-N8l8_Z3Q_4jppDPEUcLsKvqEKDXOuSPoj5K5xKaWtO5UzU84Tt6oiuCTS6M9C6-Ptp1xMBaRnPymRQYqLGe9vFJPSNsctwHnsHDCPI0XQNRvhZr_Lcr9GVI_EEhFK7fZluqYC0IU6sB44ViJnLcvXPWF8BA990Vy9YYUzCY5TAR0skIEGKp31VLH6KQ49808"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex flex-col justify-end p-3 text-on-primary">
+<div class="flex items-center justify-between text-body-sm">
+<span class="flex items-center gap-1 font-label-sm text-label-sm bg-surface-container-lowest/20 backdrop-blur-md px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">security</span> Validasi IP Presensi FT
+          </span>
+<span class="font-data-tabular text-label-sm text-on-primary/90">03-Nov-2026 10:32:15 WITA</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-primary mt-1 truncate">Foto Bukti Kepulangan &amp; Penyerahan Buku Giro</p>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 space-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5">description</span>
+<div class="flex flex-col flex-1 min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Catatan Realisasi Pegawai</span>
+<p class="font-body-sm text-body-sm text-primary mt-0.5 leading-snug">
+            “Tugas selesai, berkas buku giro telah diterima dari teller BNI dan disimpan di meja administrasi umum FT Unhas.”
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t-0 bg-surface-container-lowest/80 p-2 rounded text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">wifi</span>
+<span class="text-on-surface-variant">SSID: <strong class="text-primary font-medium">FT-Unhas-Staff</strong></span>
+</div>
+<span class="font-data-tabular text-label-sm text-on-surface-variant font-semibold">10.15.22.40</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-2.5">
+<button class="w-full h-11 bg-primary text-on-primary rounded font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary transition-colors active:scale-[0.99] shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+      Unduh Bukti Izin (PDF Resmi)
+    </button>
+<button class="w-full h-10 bg-surface-container text-primary rounded font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-high transition-colors" onclick="history.back()" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+      Kembali ke Daftar Riwayat
+    </button>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for smooth feedback on download button
+  document.querySelector('button')?.addEventListener('click', function(e) {
+    if (this.textContent.includes('Unduh')) {
+      const origText = this.innerHTML;
+      this.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span> Mempersiapkan Dokumen Unhas...';
+      setTimeout(() => {
+        this.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span> Berhasil Diunduh';
+        setTimeout(() => {
+          this.innerHTML = origText;
+        }, 2200);
+      }, 1200);
+    }
+  });
+</script></main></body></html>

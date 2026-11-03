@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><title>Izin Monitor Unhas</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed": "#001944", "on-secondary-fixed-variant": "#1b448d", "on-tertiary-fixed": "#0d1c2e", "on-background": "#131b2e", "error": "#ba1a1a", "tertiary-container": "#182638", "surface-container-highest": "#dae2fd", "on-secondary": "#ffffff", "surface-bright": "#faf8ff", "outline": "#74777f", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c4c6cf", "tertiary": "#031122", "inverse-primary": "#b1c7f0", "tertiary-fixed-dim": "#b9c7df", "surface": "#faf8ff", "secondary-container": "#8eafff", "surface-container-high": "#e2e7ff", "on-tertiary-container": "#7f8da3", "on-error": "#ffffff", "surface-container-low": "#f2f3ff", "inverse-surface": "#283044", "on-primary-container": "#778db2", "on-surface": "#131b2e", "surface-tint": "#495f82", "on-secondary-container": "#164089", "primary-container": "#0b2545", "on-tertiary-fixed-variant": "#3a485b", "on-error-container": "#93000a", "secondary": "#385ca6", "surface-dim": "#d2d9f4", "on-primary-fixed-variant": "#314769", "surface-variant": "#dae2fd", "on-primary": "#ffffff", "secondary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#d5e3fc", "background": "#faf8ff", "secondary-fixed": "#d9e2ff", "error-container": "#ffdad6", "on-surface-variant": "#44474e", "primary": "#001026", "on-primary-fixed": "#001c3b", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b1c7f0", "surface-container": "#eaedff", "primary-fixed": "#d5e3ff" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-desktop": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem" }, fontFamily: { "label-lg": ["Inter"], "body-md": ["Inter"], "data-tabular": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "data-metric": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "data-tabular": ["13px", { lineHeight: "18px", fontWeight: "500" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "display-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "display-lg": ["36px", { lineHeight: "44px", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }], "data-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; background-color: #faf8ff; } body { overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 -ml-2 flex items-center justify-center text-primary hover:text-secondary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-sm text-headline-sm text-primary tracking-tight truncate">Detail Izin</h1></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe px-space-md bg-surface"><div class="flex flex-col w-full pb-8">
+<div class="space-y-space-md pt-space-xs">
+<!-- Header Status Ringkas & SLA Countdown -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm tracking-wide uppercase">
+          Tiket #IZN-2026-8812
+        </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          Tepat Waktu • Sisa 13 Menit
+        </span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary tracking-tight">Konfirmasi Kepulangan Pegawai</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Pengurusan Buku Giro (BNI KCP Unhas)</p>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Batas Waktu Toleransi</span>
+<span class="font-headline-sm text-headline-sm text-primary mt-0.5">10:45 <span class="font-label-sm text-label-sm text-on-surface-variant">WITA</span></span>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Waktu Server Saat Ini</span>
+<span class="font-headline-sm text-headline-sm text-primary mt-0.5" id="live-server-clock">10:32 <span class="font-label-sm text-label-sm text-on-surface-variant">WITA</span></span>
+</div>
+</div>
+</div>
+<!-- Verifikasi Jaringan Kantor (FR-14a Subnet Validation) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">wifi_find</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-primary">Validasi Jaringan Terpenuhi</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-snug">
+            Terhubung ke Wi-Fi <strong class="text-on-surface font-label-sm">FT-Unhas</strong>
+</p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container text-on-surface-variant font-data-tabular text-data-tabular">
+<span class="material-symbols-outlined text-[14px]">lan</span>
+<span>IP: 10.15.22.40 (Subnet Kantor Terdaftar)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Area Pengambilan Bukti Foto (FR-16, FR-17) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+          Bukti Presensi Fisik
+        </label>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Live Camera Audit</span>
+</div>
+<!-- Pill Kategori Bukti -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1">
+<button class="px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm shrink-0" type="button">
+<span class="material-symbols-outlined text-[15px]">desk</span>
+          Foto di Meja Kerja
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1 shrink-0" type="button">
+<span class="material-symbols-outlined text-[15px]">meeting_room</span>
+          Lobi / Ruang TU
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1 shrink-0" type="button">
+<span class="material-symbols-outlined text-[15px]">badge</span>
+          Surat Tugas Bertandatangan
+        </button>
+</div>
+<!-- Viewfinder / Preview Frame -->
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-inner bg-primary flex flex-col justify-between p-3" id="camera-viewport">
+<!-- Image placeholder as captured photo -->
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Clear modern photograph of a university staff employee wearing institutional faculty batik smiling politely at an organized office work desk in Fakultas Teknik Universitas Hasanuddin Gowa campus with laptops, administrative files, and warm indoor institutional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT70pMWbDxz2Bc8IBM0S76_GzBbRE769RGrTpNQxp_nHEVL_VgGgiMlvLJk3wAgxxyn3sedhP4X1yFplVRuiTHwglbd1fKa-jbv6u5Q7bESFeWqBjhffMm11d7KEJY9Iwmg5a_BNEkwfp5fA1ZSrw7DJTKtZkLlDgUfGiEoX9RN5BHODbXZwqX-fRKUe7oFXwWHqeRSXz7AR3cBWfi6YBNKjz7wRUdSYH-HCvUpus"/>
+<!-- Security Overlay Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/40 pointer-events-none"></div>
+<!-- Camera HUD Top Bar -->
+<div class="relative z-10 flex items-center justify-between text-on-primary">
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-primary/70 backdrop-blur-md font-data-tabular text-data-tabular">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span>SECURE CAPTURE</span>
+</div>
+<div class="px-2 py-0.5 rounded bg-primary/70 backdrop-blur-md font-label-sm text-label-sm">
+<span>Watermark Terkunci</span>
+</div>
+</div>
+<!-- Camera Watermark HUD Bottom -->
+<div class="relative z-10 flex flex-col gap-0.5 text-on-primary font-data-tabular text-data-tabular bg-primary/70 backdrop-blur-md p-2 rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-label-sm">FT Kampus Gowa • Lab Dep. Elektro &amp; Informatika</span>
+<span class="text-label-sm text-secondary-container">GPS ± 4.2m</span>
+</div>
+<div class="flex items-center justify-between text-on-primary/90 text-body-sm font-body-sm">
+<span>Lat: -5.23091, Long: 119.49902</span>
+<span id="camera-live-ts">03 Nov 2026 10:32:15 WITA</span>
+</div>
+</div>
+</div>
+<!-- Compression & Re-take bar -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Ukuran kompresi: <strong class="text-on-surface">420 KB</strong> (Optimal)</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm flex items-center gap-1 hover:bg-surface-container-high transition-colors" onclick="triggerRetake()" type="button">
+<span class="material-symbols-outlined text-[16px]">flip_camera_ios</span>
+          Ambil Ulang
+        </button>
+</div>
+</div>
+<!-- Catatan Singkat Pegawai -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-primary" for="officer-notes">
+          Catatan Realisasi Tugas <span class="font-body-sm text-body-sm text-on-surface-variant">(Opsional)</span>
+</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="char-counter">78/200</span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg p-3 outline-none focus:bg-surface-container transition-colors resize-none placeholder:text-on-surface-variant/70" id="officer-notes" maxlength="200" placeholder="Tuliskan keterangan singkat hasil pengurusan izin..." rows="3">Tugas selesai, berkas buku giro telah diterima dan disimpan di meja administrasi.</textarea>
+</div>
+</div>
+<!-- Link Pengecualian (FR-21) -->
+<div class="flex justify-center py-1">
+<button class="inline-flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm text-center" onclick="openExceptionModal()" type="button">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+        Kendala unggah bukti? <span class="underline decoration-dotted underline-offset-4 text-secondary">Ajukan jalur pengecualian atasan</span>
+</button>
+</div>
+<!-- Action Buttons Group -->
+<div class="pt-space-xs flex flex-col gap-2.5">
+<button class="w-full h-12 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-md hover:bg-secondary transition-all active:scale-[0.99]" id="btn-submit" onclick="submitResolution()" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span>Konfirmasi Sudah Kembali di Kantor</span>
+</button>
+<button class="w-full h-11 rounded-xl bg-surface-container text-primary font-label-lg text-label-lg flex items-center justify-center hover:bg-surface-container-high transition-colors" onclick="history.back()" type="button">
+        Batal
+      </button>
+</div>
+</div>
+<!-- Exception Modal (FR-21 Sheet) -->
+<div class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-space-md" id="modal-exception">
+<div class="bg-surface-container-lowest w-full max-w-md rounded-t-2xl sm:rounded-2xl p-space-md shadow-xl flex flex-col gap-space-sm transform transition-transform">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Jalur Pengecualian Presensi</h3>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeExceptionModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Gunakan opsi ini jika mengalami gangguan kamera hardware atau kegagalan sinkronisasi jaringan Wi-Fi kantor. Permintaan akan langsung diteruskan ke Ketua Departemen untuk verifikasi manual.
+      </p>
+<div class="space-y-2 pt-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Alasan Kendala Lapangan</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md outline-none">
+<option>Kamera Perangkat Bermasalah / Rusak</option>
+<option>Wi-Fi Kantor Down / Terputus Masif</option>
+<option>Dipanggil Langsung ke Ruang Rapat Dekanat</option>
+</select>
+</div>
+<div class="flex gap-2 pt-space-xs">
+<button class="flex-1 h-10 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm" onclick="closeExceptionModal()" type="button">
+          Kembali
+        </button>
+<button class="flex-1 h-10 rounded-lg bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold" onclick="confirmException()" type="button">
+          Kirim ke Atasan
+        </button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction JS -->
+<script>
+    function triggerRetake() {
+      const tsElem = document.getElementById('camera-live-ts');
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + 
+                      String(now.getMinutes()).padStart(2, '0') + ':' + 
+                      String(now.getSeconds()).padStart(2, '0');
+      if (tsElem) {
+        tsElem.innerText = `03 Nov 2026 ${timeStr} WITA`;
+      }
+      const vp = document.getElementById('camera-viewport');
+      if (vp) {
+        vp.classList.add('opacity-70');
+        setTimeout(() => vp.classList.remove('opacity-70'), 150);
+      }
+    }
+
+    function openExceptionModal() {
+      const modal = document.getElementById('modal-exception');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeExceptionModal() {
+      const modal = document.getElementById('modal-exception');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function confirmException() {
+      closeExceptionModal();
+      const btn = document.getElementById('btn-submit');
+      if (btn) {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">send</span><span>Mengirim Permohonan Pengecualian...</span>`;
+        btn.classList.add('bg-secondary');
+        setTimeout(() => {
+          alert('Permohonan pengecualian berhasil diteruskan ke Atasan Langsung.');
+        }, 600);
+      }
+    }
+
+    function submitResolution() {
+      const btn = document.getElementById('btn-submit');
+      if (btn) {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">sync</span><span>Memverifikasi & Menyelesaikan Izin...</span>`;
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Status Berhasil Diperbarui</span>`;
+          btn.classList.remove('bg-primary');
+          btn.classList.add('bg-secondary');
+        }, 1000);
+      }
+    }
+
+    const noteInput = document.getElementById('officer-notes');
+    const counter = document.getElementById('char-counter');
+    if (noteInput && counter) {
+      noteInput.addEventListener('input', (e) => {
+        counter.textContent = `${e.target.value.length}/200`;
+      });
+    }
+  </script>
+</div></main></body></html>

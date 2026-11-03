@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}Pemantauan Pegawai di Luar Kampus - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<div class="min-h-screen flex bg-background">
+  
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="hidden lg:flex fixed left-0 top-0 bottom-0 w-72 bg-surface-container-lowest z-40 flex-col justify-between border-r border-surface-container shadow-sm">
+    <div class="flex flex-col h-full">
+      <div class="h-20 px-6 flex items-center gap-3 border-b border-surface-container">
+        <div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold shadow-sm">
+          <span class="material-symbols-outlined text-[24px]">account_balance</span>
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span class="font-display font-bold text-base text-primary tracking-tight truncate leading-tight">IZIN MONITOR</span>
+          <span class="text-[10px] text-on-surface-variant font-semibold uppercase tracking-wider truncate">Universitas Hasanuddin</span>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-4 py-4">
+        <nav class="flex flex-col gap-1 text-sm font-medium">
+          <div class="px-2 pt-2 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Pemantauan Utama</div>
+          <a href="{{ url_for('atasan.dashboard') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">dashboard</span>
+              <span>Dashboard Pemantauan</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.persetujuan') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+              <span>Persetujuan Izin</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.sedang_di_luar') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-primary-container text-on-primary font-semibold shadow-sm">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">door_open</span>
+              <span>Pegawai Sedang di Luar</span>
+            </div>
+            <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">{{ outside_requests|length }}</span>
+          </a>
+          <div class="px-2 pt-4 pb-1 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Pengawasan & Bukti</div>
+          <a href="{{ url_for('atasan.verifikasi_bukti') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">verified</span>
+              <span>Verifikasi Bukti Lokasi</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.pengecualian') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">update</span>
+              <span>Pengecualian & Perpanjangan</span>
+            </div>
+          </a>
+          <a href="{{ url_for('atasan.rekap') }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[20px]">summarize</span>
+              <span>Rekap Kehadiran Bawahan</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 bg-surface-container-low border-t border-surface-container flex flex-col gap-1">
+        <p class="text-xs font-semibold text-on-surface-variant leading-snug">Izin Monitor Unhas v0.1</p>
+        <p class="text-[11px] text-on-surface-variant leading-snug">Integrasi Non-API Unhas Ontime • Server Jaringan Lokal</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CANVAS -->
+  <div class="flex-1 lg:pl-72 flex flex-col min-w-0">
+    <header class="h-20 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container sticky top-0 z-30 flex items-center justify-between px-6">
+      <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+        <span class="font-semibold text-primary">Fakultas Teknik</span>
+        <span>&rsaquo;</span>
+        <span>Pemantauan Real-Time Pegawai di Luar</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+        <span class="text-xs text-on-surface-variant font-medium">Sinkronisasi Server: {{ now_time }}</span>
+              <a href="{{ url_for('auth.logout') }}" title="Keluar Sistem" class="p-2 rounded-xl text-on-surface-variant hover:text-error hover:bg-surface-container transition-colors">
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+        </a></div>
+    </header>
+
+    <main class="flex-1 p-6 flex flex-col gap-6">
+
+      <!-- TOP CONTEXT -->
+      <section class="flex flex-col gap-4 bg-surface-container-lowest p-6 rounded-2xl border border-surface-container shadow-sm">
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-semibold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              Live Presensi Unhas
+            </span>
+            <span class="text-xs text-on-surface-variant font-mono">• Sinkronisasi Tiap 30 Detik</span>
+          </div>
+          <h1 class="font-display font-bold text-2xl text-primary tracking-tight mt-1">
+            Pemantauan Pegawai di Luar Kampus
+          </h1>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+            Monitoring pergerakan real-time pegawai berizin aktif, estimasi batas waktu kembali, serta pengawasan integritas presensi Fakultas Teknik Universitas Hasanuddin.
+          </p>
+        </div>
+
+        <!-- 4 SUMMARY TILES -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-surface-container">
+          <div class="p-4 bg-surface-container-low rounded-xl flex flex-col justify-between">
+            <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Sedang di Luar Aktif</span>
+            <div class="my-1.5 flex items-baseline gap-1">
+              <span class="font-display font-bold text-2xl text-primary">{{ ontime_count }}</span>
+              <span class="text-xs text-on-surface-variant">Pegawai</span>
+            </div>
+            <span class="text-[11px] text-secondary font-medium">Dalam batas waktu berlaku</span>
+          </div>
+
+          <div class="p-4 bg-surface-container-low rounded-xl flex flex-col justify-between border {% if late_count > 0 %}border-error/40 bg-error-container/20{% endif %}">
+            <span class="text-xs font-semibold text-error uppercase tracking-wider">Lewat Batas Waktu</span>
+            <div class="my-1.5 flex items-baseline gap-1">
+              <span class="font-display font-bold text-2xl text-error">{{ late_count }}</span>
+              <span class="text-xs text-error font-medium">Terlambat</span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant">Memerlukan teguran / kontak</span>
+          </div>
+
+          <div class="p-4 bg-surface-container-low rounded-xl flex flex-col justify-between">
+            <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Selesai Hari Ini</span>
+            <div class="my-1.5 flex items-baseline gap-1">
+              <span class="font-display font-bold text-2xl text-emerald-600">{{ completed_today }}</span>
+              <span class="text-xs text-on-surface-variant">Kembali</span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant">Presensi ditutup dengan bukti</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIVE TABLE -->
+      <section class="bg-surface-container-lowest rounded-2xl border border-surface-container shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-surface-container flex items-center justify-between">
+          <h2 class="font-display font-bold text-base text-primary">Daftar Pegawai yang Berada di Luar</h2>
+          <button onclick="location.reload()" class="flex items-center gap-1 text-xs text-secondary font-semibold hover:underline">
+            <span class="material-symbols-outlined text-[16px]">sync</span>
+            <span>Perbarui Data</span>
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant font-bold uppercase tracking-wider border-b border-surface-container">
+                <th class="py-3 px-4">Pegawai</th>
+                <th class="py-3 px-4">Tujuan & Alasan</th>
+                <th class="py-3 px-4">Waktu Keberangkatan</th>
+                <th class="py-3 px-4">Batas Jam Kembali</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-right">Tindakan</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-surface-container">
+              {% for r in outside_requests %}
+              <tr class="hover:bg-surface-container-low transition-colors">
+                <td class="py-3.5 px-4">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs shrink-0">
+                      {{ r.pegawai.nama[:2] }}
+                    </div>
+                    <div class="flex flex-col min-w-0">
+                      <span class="font-bold text-primary truncate">{{ r.pegawai.nama }}</span>
+                      <span class="text-[11px] text-on-surface-variant truncate">NIP. {{ r.pegawai.nip }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4">
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-primary truncate max-w-xs">{{ r.alasan }}</span>
+                    <span class="text-[11px] text-secondary truncate">{{ r.tujuan or 'Tujuan Resmi' }}</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 font-mono text-[11px]">
+                  {{ r.jam_pergi|time_format }} WITA
+                </td>
+                <td class="py-3.5 px-4 font-mono text-[11px] font-bold {% if r.status == 'terlambat_kembali' %}text-error{% else %}text-primary{% endif %}">
+                  {{ r.jam_pulang_rencana|time_format }} WITA
+                </td>
+                <td class="py-3.5 px-4">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider
+                    {% if r.status == 'terlambat_kembali' %}bg-error-container text-on-error-container
+                    {% else %}bg-sky-100 text-sky-800{% endif %}">
+                    {{ r.status.replace('_', ' ') }}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-right">
+                  <a href="{{ url_for('atasan.detail_izin', request_id=r.id) }}" class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-semibold text-xs inline-flex items-center gap-1">
+                    <span>Lihat</span>
+                    <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                  </a>
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="6" class="py-8 text-center text-xs text-on-surface-variant">
+                  Tidak ada pegawai yang sedang berizin di luar saat ini.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+{% endblock %}

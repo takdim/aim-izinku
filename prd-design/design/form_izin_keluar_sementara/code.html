@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Izin Monitor Unhas</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed": "#001944", "on-secondary-fixed-variant": "#1b448d", "on-tertiary-fixed": "#0d1c2e", "on-background": "#131b2e", "error": "#ba1a1a", "tertiary-container": "#182638", "surface-container-highest": "#dae2fd", "on-secondary": "#ffffff", "surface-bright": "#faf8ff", "outline": "#74777f", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c4c6cf", "tertiary": "#031122", "inverse-primary": "#b1c7f0", "tertiary-fixed-dim": "#b9c7df", "surface": "#faf8ff", "secondary-container": "#8eafff", "surface-container-high": "#e2e7ff", "on-tertiary-container": "#7f8da3", "on-error": "#ffffff", "surface-container-low": "#f2f3ff", "inverse-surface": "#283044", "on-primary-container": "#778db2", "on-surface": "#131b2e", "surface-tint": "#495f82", "on-secondary-container": "#164089", "primary-container": "#0b2545", "on-tertiary-fixed-variant": "#3a485b", "on-error-container": "#93000a", "secondary": "#385ca6", "surface-dim": "#d2d9f4", "on-primary-fixed-variant": "#314769", "surface-variant": "#dae2fd", "on-primary": "#ffffff", "secondary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#d5e3fc", "background": "#faf8ff", "secondary-fixed": "#d9e2ff", "error-container": "#ffdad6", "on-surface-variant": "#44474e", "primary": "#001026", "on-primary-fixed": "#001c3b", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b1c7f0", "surface-container": "#eaedff", "primary-fixed": "#d5e3ff" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-desktop": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem" }, fontFamily: { "label-lg": ["Inter"], "body-md": ["Inter"], "data-tabular": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "data-metric": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "data-tabular": ["13px", { lineHeight: "18px", fontWeight: "500" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "display-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "display-lg": ["36px", { lineHeight: "44px", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }], "data-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; background-color: #faf8ff; } body { overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[20px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight tracking-tight">Izin Monitor</span><span class="font-label-sm text-label-sm text-secondary leading-none uppercase tracking-wider">Universitas Hasanuddin</span></div></div><div class="flex items-center gap-space-xs"><a aria-label="Notifikasi" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" data-path="notifikasi" href="#"><span class="material-symbols-outlined text-[22px]">notifications</span></a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 px-space-md bg-surface"><div class="flex flex-col w-full pb-6 space-y-5">
+<!-- Header Section with Campus Aura -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="inline-flex items-center gap-1.5 self-start px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm tracking-wide">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">timer</span>
+      PRESENSI AKTIF HARI INI
+    </div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-headline-lg">
+      Pengajuan Izin Keluar Sementara
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+      Izin meninggalkan kantor dalam jam kerja hari ini (WITA).
+    </p>
+</div>
+<!-- Form Container -->
+<form class="flex flex-col space-y-5" id="leave-request-form" onsubmit="event.preventDefault(); triggerSubmitFeedback();">
+<!-- 1. Pilihan Jenis Izin -->
+<div class="flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">category</span>
+          Jenis Kepentingan
+        </label>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Pilih salah satu</span>
+</div>
+<!-- Interactive Segmented Chips -->
+<div class="flex flex-col gap-2" id="chip-group">
+<label class="chip-option relative flex items-center p-3 rounded-xl bg-primary-container text-on-primary shadow-sm cursor-pointer transition-all duration-200" data-value="kedinasan">
+<input checked="" class="sr-only" name="jenis_izin" type="radio" value="kedinasan"/>
+<div class="w-8 h-8 rounded-lg bg-surface/10 flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">assignment</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-label-lg text-label-lg font-semibold truncate">Keperluan Kedinasan</div>
+<div class="font-body-sm text-body-sm text-on-primary-container opacity-90 truncate">Rapat eksternal, penugasan resmi rektorat/fakultas</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed ml-2 check-indicator" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<label class="chip-option relative flex items-center p-3 rounded-xl bg-surface-container-low text-on-surface shadow-sm cursor-pointer transition-all duration-200" data-value="khusus">
+<input class="sr-only" name="jenis_izin" type="radio" value="khusus"/>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined text-[20px] text-secondary">corporate_fare</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-label-lg text-label-lg font-semibold truncate">Keperluan Khusus Kantor</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Logistik, pengadaan darurat, atau urusan unit internal</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed ml-2 check-indicator hidden" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<label class="chip-option relative flex items-center p-3 rounded-xl bg-surface-container-low text-on-surface shadow-sm cursor-pointer transition-all duration-200" data-value="pribadi">
+<input class="sr-only" name="jenis_izin" type="radio" value="pribadi"/>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined text-[20px] text-secondary">person_alert</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-label-lg text-label-lg font-semibold truncate">Keperluan Pribadi Mendesak</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Kebutuhan mendesak, medis darurat, keluarga</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed ml-2 check-indicator hidden" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+</div>
+</div>
+<!-- 2. Waktu & Estimasi Durasi -->
+<div class="p-4 rounded-xl bg-surface-container-low shadow-sm flex flex-col space-y-3.5">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">calendar_clock</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Jadwal &amp; Durasi (WITA)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+          Hari Ini
+        </span>
+</div>
+<!-- Tanggal Read-Only Card -->
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container shadow-inner">
+<div class="w-7 h-7 rounded bg-surface flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">event</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tanggal Efektif</span>
+<span class="font-label-lg text-label-lg text-on-surface font-medium truncate">Senin, 3 November 2026</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
+</div>
+<!-- Grid Jam Berangkat & Jam Pulang -->
+<div class="grid grid-cols-2 gap-2.5">
+<div class="flex flex-col space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1" for="time-start">
+<span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+            Jam Pergi
+          </label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3 bg-surface-container-lowest rounded-lg font-data-tabular text-data-tabular text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all font-semibold" id="time-start" type="text" value="10:00 WITA"/>
+<span class="material-symbols-outlined absolute right-2.5 text-on-surface-variant text-[18px] pointer-events-none">edit_calendar</span>
+</div>
+</div>
+<div class="flex flex-col space-y-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1" for="time-end">
+<span class="material-symbols-outlined text-[15px] text-secondary">update</span>
+            Jam Pulang
+          </label>
+<div class="relative flex items-center">
+<input class="w-full h-11 px-3 bg-surface-container-lowest rounded-lg font-data-tabular text-data-tabular text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all font-semibold" id="time-end" type="text" value="11:30 WITA"/>
+<span class="material-symbols-outlined absolute right-2.5 text-on-surface-variant text-[18px] pointer-events-none">edit_calendar</span>
+</div>
+</div>
+</div>
+<!-- Durasi Terhitung Otomatis (Delight Badge) -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-high text-on-surface shadow-sm">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]">timelapse</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Estimasi Terhitung:</span>
+</div>
+<div class="font-label-md text-label-md text-primary font-bold flex items-center gap-1">
+<span>1 jam 30 menit</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+</div>
+</div>
+</div>
+<!-- 3. Tujuan & Lokasi -->
+<div class="flex flex-col space-y-1.5">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center justify-between" for="destination">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">location_on</span>
+          Tujuan / Lokasi Kunjungan
+        </span>
+<span class="font-label-sm text-label-sm text-error font-medium">*Wajib</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 pl-3.5 pr-10 bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all" id="destination" placeholder="Tuliskan nama tempat, gedung, atau instansi" required="" type="text" value="Gedung Rektorat Unhas Tamalanrea / LP2M"/>
+<span class="material-symbols-outlined absolute right-3 text-secondary text-[20px] pointer-events-none">pin_drop</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pl-1">
+        Contoh: Bank BNI KCP Tamalanrea, Rektorat Lantai 2, RS Unhas
+      </p>
+</div>
+<!-- 4. Alasan / Keterangan -->
+<div class="flex flex-col space-y-1.5">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center justify-between" for="reason">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">description</span>
+          Alasan &amp; Keterangan Rinci
+        </span>
+<span class="font-label-sm text-label-sm text-error font-medium">*Wajib</span>
+</label>
+<div class="relative">
+<textarea class="w-full p-3.5 bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all resize-none leading-relaxed" id="reason" placeholder="Tuliskan alasan keperluan izin secara singkat dan jelas..." required="" rows="3">Menyerahkan berkas SPJ penelitian dan koordinasi tanda tangan pimpinan lembaga.</textarea>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Min. 10 karakter</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">81 / 250</span>
+</div>
+</div>
+<!-- 5. Informasi Atasan Penyetuju (Executive Trust Card) -->
+<div class="p-3.5 rounded-xl bg-surface-container shadow-sm flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">
+          Verifikator &amp; Atasan Langsung
+        </div>
+<div class="font-label-lg text-label-lg text-primary font-bold truncate">
+          Dr. Ir. Faizal Arya, M.Eng.
+        </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">
+          Ketua Unit / Kepala Sub Bagian Tata Usaha
+        </div>
+</div>
+<span class="material-symbols-outlined text-secondary-fixed-variant text-[20px] shrink-0">info</span>
+</div>
+<!-- 6. Catatan Ketentuan Singkat (Friendly Institutional Banner) -->
+<div class="p-3.5 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex gap-3 shadow-sm">
+<div class="shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-on-secondary-fixed text-[20px]">notification_important</span>
+</div>
+<div class="flex flex-col space-y-1">
+<span class="font-label-md text-label-md font-bold leading-snug">
+          Aturan Presensi Unhas (FR-08)
+        </span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant leading-relaxed">
+          Wajib kembali sebelum batas jam pulang &amp; melakukan verifikasi kepulangan dengan bukti foto di jaringan kantor.
+        </p>
+</div>
+</div>
+<!-- 7. Tombol Aksi Bawah -->
+<div class="pt-2 flex flex-col space-y-2.5">
+<button class="w-full h-12 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-md active:scale-[0.99] transition-all" id="submit-button" type="submit">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span>Kirim Pengajuan Izin</span>
+</button>
+<a class="w-full h-11 rounded-xl bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-all text-center" data-path="beranda" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Kembali</span>
+</a>
+</div>
+</form>
+<!-- Delight Success Modal / Toast Notification -->
+<div class="fixed inset-x-4 bottom-24 p-4 rounded-xl bg-primary-container text-on-primary shadow-xl hidden transition-all duration-300 z-50 transform translate-y-4 opacity-0 flex items-center gap-3" id="toast-success">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">check</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-md text-label-md font-bold">Pengajuan Terkirim!</span>
+<span class="font-body-sm text-body-sm text-on-primary-container">Menunggu konfirmasi atasan Anda secara real-time.</span>
+</div>
+</div>
+</div>
+<script>
+  // Micro-interaction for Chip selection
+  const chipLabels = document.querySelectorAll('#chip-group .chip-option');
+  chipLabels.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chipLabels.forEach(c => {
+        c.classList.remove('bg-primary-container', 'text-on-primary');
+        c.classList.add('bg-surface-container-low', 'text-on-surface');
+        
+        const sub = c.querySelector('.font-body-sm');
+        if (sub) {
+          sub.classList.remove('text-on-primary-container', 'opacity-90');
+          sub.classList.add('text-on-surface-variant');
+        }
+
+        const iconContainer = c.querySelector('.w-8');
+        if (iconContainer) {
+          iconContainer.classList.remove('bg-surface/10');
+          iconContainer.classList.add('bg-surface-container-high');
+        }
+
+        const icon = c.querySelector('.w-8 .material-symbols-outlined');
+        if (icon) {
+          icon.classList.remove('text-secondary-fixed');
+          icon.classList.add('text-secondary');
+        }
+
+        const check = c.querySelector('.check-indicator');
+        if (check) check.classList.add('hidden');
+      });
+
+      // Activate current
+      chip.classList.remove('bg-surface-container-low', 'text-on-surface');
+      chip.classList.add('bg-primary-container', 'text-on-primary');
+
+      const activeSub = chip.querySelector('.font-body-sm');
+      if (activeSub) {
+        activeSub.classList.remove('text-on-surface-variant');
+        activeSub.classList.add('text-on-primary-container', 'opacity-90');
+      }
+
+      const activeIconBox = chip.querySelector('.w-8');
+      if (activeIconBox) {
+        activeIconBox.classList.remove('bg-surface-container-high');
+        activeIconBox.classList.add('bg-surface/10');
+      }
+
+      const activeIcon = chip.querySelector('.w-8 .material-symbols-outlined');
+      if (activeIcon) {
+        activeIcon.classList.remove('text-secondary');
+        activeIcon.classList.add('text-secondary-fixed');
+      }
+
+      const activeCheck = chip.querySelector('.check-indicator');
+      if (activeCheck) activeCheck.classList.remove('hidden');
+    });
+  });
+
+  // Micro-interaction for submission feedback
+  function triggerSubmitFeedback() {
+    const toast = document.getElementById('toast-success');
+    const submitBtn = document.getElementById('submit-button');
+    
+    // Quick button state feedback
+    submitBtn.classList.add('opacity-80', 'pointer-events-none');
+    submitBtn.innerHTML = `
+      <span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+      <span>Memproses Pengajuan...</span>
+    `;
+
+    setTimeout(() => {
+      submitBtn.classList.remove('opacity-80', 'pointer-events-none');
+      submitBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+        <span>Terkirim ke Atasan</span>
+      `;
+      
+      // Toast transition
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }, 800);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-2px_10px_rgba(11,37,69,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="beranda" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm">Beranda</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 transition-all text-primary font-semibold" data-path="ajukan-izin" href="#"><span class="material-symbols-outlined text-[22px]">post_add</span><span class="font-label-sm text-label-sm">Ajukan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="riwayat-izin" href="#"><span class="material-symbols-outlined text-[22px]">history</span><span class="font-label-sm text-label-sm">Riwayat</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="profil-pegawai" href="#"><span class="material-symbols-outlined text-[22px]">badge</span><span class="font-label-sm text-label-sm">Profil</span></a></div></nav></body></html>

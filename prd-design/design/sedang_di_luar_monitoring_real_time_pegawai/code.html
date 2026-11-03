@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-fixed-variant":"#314769","outline-variant":"#c4c6cf","on-error-container":"#93000a","primary-fixed":"#d5e3ff","surface-container-high":"#e2e7ff","tertiary-fixed":"#d5e3fc","primary":"#001026","inverse-surface":"#283044","surface-tint":"#495f82","on-primary-fixed":"#001c3b","on-tertiary-fixed-variant":"#3a485b","on-surface-variant":"#44474e","on-tertiary-container":"#7f8da3","inverse-on-surface":"#eef0ff","error":"#ba1a1a","inverse-primary":"#b1c7f0","secondary-container":"#8eafff","on-primary-container":"#778db2","on-secondary-fixed-variant":"#1b448d","surface-container-low":"#f2f3ff","on-surface":"#131b2e","on-tertiary-fixed":"#0d1c2e","surface-dim":"#d2d9f4","surface-variant":"#dae2fd","on-secondary-fixed":"#001944","tertiary-container":"#182638","error-container":"#ffdad6","secondary-fixed-dim":"#b0c6ff","secondary-fixed":"#d9e2ff","surface-container":"#eaedff","surface":"#faf8ff","primary-fixed-dim":"#b1c7f0","surface-bright":"#faf8ff","background":"#faf8ff","on-primary":"#ffffff","tertiary":"#031122","surface-container-lowest":"#ffffff","secondary":"#385ca6","on-tertiary":"#ffffff","tertiary-fixed-dim":"#b9c7df","outline":"#74777f","on-background":"#131b2e","on-error":"#ffffff","surface-container-highest":"#dae2fd","on-secondary":"#ffffff","on-secondary-container":"#164089","primary-container":"#0b2545"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","gutter-sm":"1rem","margin-mobile":"1rem","space-sm":"0.5rem","gutter-lg":"2rem","gutter":"1.5rem","space-xl":"2rem","margin":"1.5rem","space-lg":"1.5rem","margin-desktop":"2rem","space-xs":"0.25rem"},"fontFamily":{"data-metric":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"body-sm":["Inter"],"display-lg-mobile":["Plus Jakarta Sans"],"body-md":["Inter"],"label-lg":["Inter"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"],"data-tabular":["Inter"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"body-lg":["Inter"]},"fontSize":{"data-metric":["32px",{"lineHeight":"38px","fontWeight":"700"}],"headline-sm":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"display-lg-mobile":["28px",{"lineHeight":"36px","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"500"}],"data-tabular":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between border-r border-surface-container"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-surface-container"><div class="w-9 h-9 rounded bg-primary-container text-on-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[22px]">account_balance</span></div><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">Izin Monitor FT</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate uppercase tracking-wider">Universitas Hasanuddin</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Menu Utama</span></div></div><nav class="flex flex-col gap-1 px-space-md" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded"><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard-pemantauan" href="#"><span>Dashboard Pemantauan</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="persetujuan-izin" href="#"><span>Persetujuan Izin</span><span class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container">4 Pending</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="sedang-di-luar" href="#"><span>Sedang di Luar</span><span class="px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-label-sm">2</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="verifikasi-bukti-dan-ip" href="#"><span>Verifikasi Bukti &amp; IP</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dispensasi-dan-pengecualian" href="#"><span>Dispensasi &amp; Pengecualian</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="rekap-dan-laporan-audit" href="#"><span>Rekap &amp; Laporan Audit</span></a></nav></div><div class="p-space-md border-t border-surface-container bg-surface-container-low"><div class="p-space-sm rounded bg-surface-container-lowest flex flex-col gap-1"><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">contact_support</span><span class="font-label-sm text-label-sm uppercase tracking-wide">Bantuan Presensi</span></div><a class="font-body-sm text-body-sm text-secondary hover:underline" href="#">Hubungi SIMPEG / Admin Presensi</a></div><div class="mt-space-sm px-space-xs flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm text-outline">v1.2 FT Unhas</span><span class="font-label-sm text-label-sm text-outline">SIAKAD Sync Active</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-gutter border-b border-surface-container"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="font-label-md text-label-md text-primary">Fakultas Teknik</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface-variant">Sistem Presensi &amp; Perizinan Dosen/Tendik</span></div><div class="h-4 w-px bg-surface-container-high"></div><div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-data-tabular text-body-sm"><span class="inline-block w-2 h-2 rounded-full bg-secondary"></span><span>09:42 WITA</span><span class="text-outline">•</span><span class="font-label-sm text-label-sm uppercase">WITA Server Sync</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full ring-2 ring-surface"></span></button><div class="h-6 w-px bg-surface-container"></div><div class="flex items-center gap-space-sm pl-space-xs py-1 pr-space-md bg-surface-container-lowest rounded-full shadow-[0_1px_3px_0_rgba(11,37,69,0.04)] border border-surface-container"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight truncate max-w-[210px]">Prof. Dr. Ir. Jamaluddin, M.T.</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight truncate">Dekan FT Unhas</span></div></div></div></header><main class="relative w-full pt-16 bg-background px-gutter py-space-lg min-h-screen"><div class="flex flex-col w-full gap-space-lg">
+<!-- TOP CONTEXT & LIVE BROADCAST STRIP -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+          Live Sync SIMPEG
+        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+          Waktu Server Presensi: <span class="font-data-tabular font-semibold text-on-surface">10:18:42 WITA</span>
+</span>
+<span class="font-label-sm text-label-sm text-outline">• Sinkronisasi Tiap 30 Detik</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mt-1">Pemantauan Pegawai di Luar Kampus</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Monitoring pergerakan real-time pegawai berizin aktif, estimasi batas waktu kembali, serta pengawasan integritas presensi Fakultas Teknik Universitas Hasanuddin.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 self-start lg:self-center">
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors shadow-sm" onclick="this.classList.add('rotate-180'); setTimeout(()=&gt;this.classList.remove('rotate-180'), 600);" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Perbarui Data</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary-container text-on-primary font-label-md text-label-md rounded shadow-sm hover:opacity-95 transition-opacity" type="button">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+<span>Broadcast Pengingat WA</span>
+</button>
+</div>
+</section>
+<!-- 4 EXECUTIVE KPI SUMMARY TILES -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Stat 1: Sedang di Luar -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Sedang di Luar Aktif</span>
+<div class="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">directions_walk</span>
+</div>
+</div>
+<div class="my-space-sm">
+<span class="font-data-metric text-data-metric text-primary">02</span>
+<span class="font-label-md text-label-md text-on-surface-variant ml-1">Pegawai</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-on-surface-variant">
+<span class="font-body-sm text-body-sm">1 Kedinasan Tamalanrea</span>
+<span class="font-body-sm text-body-sm">• 1 Perbankan</span>
+</div>
+</div>
+<!-- Stat 2: Mendekati Batas Waktu -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Mendekati Batas Waktu</span>
+<div class="w-8 h-8 rounded bg-surface-container-high text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-data-metric text-data-metric text-primary">01</span>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-highest text-on-surface uppercase tracking-wider">&lt; 27 Menit Sisa</span>
+</div>
+<div class="flex items-center gap-1.5 pt-space-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<span class="font-body-sm text-body-sm">Faisal Basri (Lab Jaringan)</span>
+</div>
+</div>
+<!-- Stat 3: Terlambat / Lewat Toleransi -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Lewat Waktu Toleransi</span>
+<div class="w-8 h-8 rounded bg-surface-container-low text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-data-metric text-data-metric text-primary">00</span>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant uppercase tracking-wider">Nihil Pelanggaran</span>
+</div>
+<div class="flex items-center gap-1.5 pt-space-xs text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Semua izin dalam ambang toleransi SOP</span>
+</div>
+</div>
+<!-- Stat 4: Selesai Kembali Hari Ini -->
+<div class="flex flex-col justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-start justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Kembali Hari Ini</span>
+<div class="w-8 h-8 rounded bg-surface-container text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-data-metric text-data-metric text-primary">07</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Pegawai Selesai</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Validasi Subnet FT: 100%</span>
+<span class="font-label-sm text-label-sm font-semibold text-secondary">Tepat Waktu</span>
+</div>
+</div>
+</section>
+<!-- FILTER & RAPID CONTROLS TOOLBAR -->
+<section class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex flex-1 flex-col sm:flex-row items-stretch sm:items-center gap-space-sm">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[240px]">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[20px] text-outline">search</span>
+<input class="w-full pl-10 pr-3 py-2 bg-surface-container-low text-on-surface placeholder:text-outline text-body-md font-body-md rounded focus:outline-none focus:ring-2 focus:ring-secondary" placeholder="Cari nama pegawai, NIP, tujuan dinas, atau no. izin..." type="text"/>
+</div>
+<!-- Department Filter -->
+<div class="relative shrink-0">
+<select class="appearance-none w-full sm:w-auto pl-3 pr-8 py-2 bg-surface-container-low text-on-surface text-body-md font-body-md rounded focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option value="">Semua Departemen / Unit Kerja</option>
+<option value="elektro">Teknik Elektro &amp; Informatika</option>
+<option value="mesin">Teknik Mesin &amp; Industri</option>
+<option value="sipil">Teknik Sipil &amp; Lingkungan</option>
+<option value="arsitektur">Teknik Arsitektur</option>
+<option value="geologi">Teknik Geologi &amp; Pertambangan</option>
+<option value="tu">Tata Usaha &amp; Kepegawaian FT</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative shrink-0">
+<select class="appearance-none w-full sm:w-auto pl-3 pr-8 py-2 bg-surface-container-low text-on-surface text-body-md font-body-md rounded focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+<option value="">Status Perjalanan (Semua)</option>
+<option value="aman">Waktu Aman (&gt;30 Menit)</option>
+<option value="kritis">Mendekati Batas (&lt;20 Menit)</option>
+<option value="terlambat">Lewat Toleransi</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Right Controls -->
+<div class="flex items-center gap-space-xs shrink-0 self-end lg:self-auto">
+<button class="p-2 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" title="Tampilan Grid" type="button">
+<span class="material-symbols-outlined text-[20px]">view_agenda</span>
+</button>
+<button class="p-2 rounded bg-surface-container-lowest text-on-surface-variant hover:text-on-surface transition-colors" title="Tampilan Tabel Kompak" type="button">
+<span class="material-symbols-outlined text-[20px]">table_rows</span>
+</button>
+<div class="h-6 w-px bg-surface-container mx-1"></div>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container text-primary font-label-md text-label-md rounded hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Ekspor Rekap Log</span>
+</button>
+</div>
+</section>
+<!-- 2-COLUMN SPLIT GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (60%): LIVE ACTIVE PERSONNEL TRACKING -->
+<section class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-primary">Daftar Pegawai Sedang Berada di Luar</h2>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-container">2 Orang Aktif</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Urutan: Prioritas Batas Waktu Terdekat</span>
+</div>
+<!-- CARD 1: FAISAL BASRI (MENDEKATI BATAS WAKTU) -->
+<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Top Priority Header Strip -->
+<div class="bg-surface-container-high px-space-lg py-2.5 flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-primary">Perhatian: Waktu Tersisa Tinggal 27 Menit</span>
+</div>
+<span class="font-data-tabular text-body-sm font-semibold text-primary">Ambang Batas Peringatan</span>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Personnel Metadata -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="relative shrink-0">
+<img class="w-14 h-14 rounded-xl object-cover shadow-sm" data-alt="Close-up portrait of an Indonesian male IT technician wearing neat academic faculty polo uniform with ID badge, looking focused and professional in clean bright university office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUpjOmjGyR5GQT7flohVIg68fRc9nVnMNzjjKyNlrKFKTbhiBBmkQGDZQhK8Rfpv6vqcgt7jzkW-0Xaz5KAkwaP48F_FYw7mcpH4NPM4guMK7qJmLoGF98TMOf1p_7Ez53faySI0lvPt-a4igOkuthuFrW7dqTEtAR-REcxF9482C0SL5PpSd1hrcyxQsCb7lSwwv0WkhP5OOw--KrZ5fzwmwMnYc-m83UjivKhY8"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary rounded-full flex items-center justify-center text-[10px] text-on-secondary font-bold" title="Status Bergerak">
+<span class="material-symbols-outlined text-[12px]">directions_walk</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Faisal Basri, A.Md.</h3>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">Pranata Komputer Pelaksana</span>
+</div>
+<p class="font-data-tabular text-body-sm text-on-surface-variant">NIP: 19940228 202012 1 004 • Lab. Jaringan &amp; Komputasi Awan FT</p>
+<div class="flex items-center gap-space-sm mt-1 flex-wrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                    Tiket #IZN-2026-8812
+                  </span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Izin Keperluan Dinas Perbankan</span>
+</div>
+</div>
+</div>
+<!-- Urgent Remaining Timer -->
+<div class="flex flex-col sm:items-end shrink-0 bg-surface-container-low p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Hitung Mundur Batas</span>
+<span class="font-data-metric text-[26px] leading-tight text-primary font-bold">00 : 27 : 18</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rencana Kembali: 10:45 WITA</span>
+</div>
+</div>
+<!-- Trip Visual Gauge & Timeline Bar -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+                Keluar Kampus Gowa: <strong class="text-on-surface">09:00 WITA</strong>
+</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Pemakaian Waktu: 74% (78 mnt dari 105 mnt)</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_land</span>
+                Batas Akhir: <strong class="text-on-surface">10:45 WITA</strong>
+</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 74.2%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">location_on</span>
+                Tujuan: <strong>Bank BNI KCP Unhas Kampus Tamalanrea</strong>
+</span>
+<span class="font-label-sm text-label-sm text-outline">Toleransi s/d 11:00 WITA (Maks 15 mnt)</span>
+</div>
+</div>
+<!-- Detail Status Info Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm text-body-sm">
+<div class="flex items-start gap-2 p-2.5 bg-surface-container rounded">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0">pin_drop</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Posisi &amp; Check-In Terakhir</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Pelataran Customer Service BNI Tamalanrea</span>
+<span class="font-label-sm text-label-sm text-outline">Pembaruan 12 menit lalu via Mobile App SIMPEG</span>
+</div>
+</div>
+<div class="flex items-start gap-2 p-2.5 bg-surface-container rounded">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0">description</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Uraian Keperluan Izin</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Pembaruan Rekening Giro Operasional Laboratorium Komputasi FT</span>
+<span class="font-label-sm text-label-sm text-secondary">Surat Pengantar No: 0418/UN4.8.1/KU/2026</span>
+</div>
+</div>
+</div>
+<!-- Direct Operational Actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2">
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors" href="https://wa.me/6281234567890" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-secondary">chat</span>
+<span>Hubungi via WA (+62 812-4211-xxxx)</span>
+</a>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">call</span>
+<span>Telepon Langsung</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container-high text-primary hover:bg-surface-container-highest font-label-md text-label-md rounded transition-colors" title="Kirim peringatan SMS/WA SIMPEG" type="button">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+<span>Kirim Ping Batas Jam</span>
+</button>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-primary-container text-on-primary hover:opacity-90 font-label-md text-label-md rounded transition-opacity" type="button">
+<span class="material-symbols-outlined text-[16px]">more_time</span>
+<span>Dispensasi Tambahan Waktu</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- CARD 2: NUR FADILAH (STATUS AMAN & TERVALIDASI) -->
+<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Status Header Strip -->
+<div class="bg-surface-container-low px-space-lg py-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-secondary">Status Normal &amp; Tervalidasi</span>
+</div>
+<span class="font-data-tabular text-body-sm text-on-surface-variant">Kendaraan Dinas Aktif: Minibus FT-02</span>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Personnel Metadata -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="relative shrink-0">
+<img class="w-14 h-14 rounded-xl object-cover shadow-sm" data-alt="Portrait of an Indonesian female engineering lecturer wearing elegant hijab and formal dark university blazer with faculty credentials, smiling confidently in academic setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT5Hvcl0FNIk4EtD5BL1J56K6InGALa4kEP99NYNAeSIwSrKKYaleQ2mjeDfRD_mQHWASUtEFYGd2gkO-QJbkcUsRRkvqH8NA6h6iLYBfFQnhNp1pv4QuKQYGTnqRhLbGW0dXURwmoFqA7ajXYAOZiMKfL_JBXKv2bigQb_MSW9b6V9q8SS7b-AYhrTz9WTGOuvBhtaA9Dmd39K8qv1ywS5w-VZkMj2QUYJNboI-8"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary rounded-full flex items-center justify-center text-[10px] text-on-secondary font-bold" title="Status Dinas">
+<span class="material-symbols-outlined text-[12px]">directions_car</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Nur Fadilah, S.T., M.T.</h3>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">Dosen Lektor / Tim Akreditasi</span>
+</div>
+<p class="font-data-tabular text-body-sm text-on-surface-variant">NIP: 19880514 201404 2 001 • Departemen Teknik Elektro Unhas</p>
+<div class="flex items-center gap-space-sm mt-1 flex-wrap">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                    Tiket #IZN-2026-8822
+                  </span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tugas Dinas Antar-Kampus (Unhas Tamalanrea)</span>
+</div>
+</div>
+</div>
+<!-- Remaining Timer (Safe) -->
+<div class="flex flex-col sm:items-end shrink-0 bg-surface-container-low p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Hitung Mundur Batas</span>
+<span class="font-data-metric text-[26px] leading-tight text-secondary font-bold">02 : 11 : 42</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rencana Kembali: 12:30 WITA</span>
+</div>
+</div>
+<!-- Trip Visual Gauge & Timeline Bar -->
+<div class="flex flex-col gap-1.5 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_takeoff</span>
+                Keluar Kampus Gowa: <strong class="text-on-surface">10:00 WITA</strong>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Pemakaian Waktu: 12% (18 mnt dari 150 mnt)</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">flight_land</span>
+                Batas Akhir: <strong class="text-on-surface">12:30 WITA</strong>
+</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 12%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
+<span class="flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">pin_drop</span>
+                Tujuan: <strong>LPMP Sulsel &amp; Ruang Rapat Dekanat Lt. 3 Rektorat Tamalanrea</strong>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Waktu Sangat Cukup (Toleransi s/d 12:45)</span>
+</div>
+</div>
+<!-- Detail Status Info Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm text-body-sm">
+<div class="flex items-start gap-2 p-2.5 bg-surface-container rounded">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0">gps_fixed</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Posisi &amp; Check-In Terakhir</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Gedung LPMP Sulsel, Jl. Pettarani Makassar</span>
+<span class="font-label-sm text-label-sm text-outline">Tervalidasi GPS koordinat 10:02 WITA</span>
+</div>
+</div>
+<div class="flex items-start gap-2 p-2.5 bg-surface-container rounded">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0">assignment</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Agenda Kedinasan</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Koordinasi Tim Asesor IABEE &amp; Pengambilan Dokumen Akreditasi</span>
+<span class="font-label-sm text-label-sm text-secondary">SPT Dekan: No. 1192/UN4.8/KP.04/2026</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">description</span>
+<span>Lihat Surat Perintah Tugas (PDF)</span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors" href="https://wa.me/6281144223344" target="_blank">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">chat</span>
+<span>Kirim Pesan</span>
+</a>
+</div>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container-highest text-primary hover:bg-surface-container-high font-label-md text-label-md rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">location_searching</span>
+<span>Cek Jalur Balik Kendaraan</span>
+</button>
+</div>
+</div>
+</article>
+<!-- HISTORICAL TEASER: TOTAL 7 COMPLETED TODAY -->
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">history_toggle_off</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">7 Pegawai Telah Kembali ke Kampus Hari Ini</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Verifikasi subnet Wi-Fi FT Gowa (10.12.80.x) lengkap. Semua tepat waktu.</span>
+</div>
+</div>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded transition-colors shrink-0" type="button">
+<span>Lihat Log Selesai</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- RIGHT COLUMN (40%): GEO RADAR, SOP COMPLIANCE & LIVE LOG AUDIT -->
+<aside class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- WIDGET 1: RADAR JALUR KAMPUS GOWA <-> MAKASSAR -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">route</span>
+<span class="font-headline-sm text-headline-sm text-primary">Radar Koridor Kampus FT</span>
+</div>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-container uppercase">Live Traffic</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Static Visual Map with data-location for automated static maps pipeline -->
+<div class="w-full h-44 rounded-lg overflow-hidden relative shadow-inner bg-cover bg-center" data-location="Kampus Fakultas Teknik Universitas Hasanuddin Gowa" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDl_EswemjaKSC443BJyoonbCO2qGC3qP9LUckEMj_xU-CPT0iBgwsJyHdU5IccMTDpoRe_fEnVX8W9sv6lglp_yrdRzFZkc-7DzqS4uutpiqOk5ydlHOvrHnnjRg1neCR7CE16GA86vVL993KxxDjDYkNHKX93daSTUWNP3cCxNThrt-3ddMeKPaZ9Zp7UB__G1QH9rAEKQjC-Gn8agZX6C1OQ1CuhOC3Z3vilnJU');">
+<div class="absolute inset-0 bg-primary/30 backdrop-blur-[1px] flex flex-col justify-between p-3 text-on-primary">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  Rute: Gowa ↔ Tamalanrea
+                </span>
+<span class="font-data-tabular font-semibold text-body-sm px-2 py-0.5 rounded bg-surface-container-lowest/90 text-primary">Est: 38 - 45 Menit</span>
+</div>
+<div class="bg-surface-container-lowest/95 p-2 rounded shadow-sm text-on-surface">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-medium">Jalur Poros Sultan Alauddin &amp; AP Pettarani:</span>
+<span class="text-secondary font-bold">Ramai Lancar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Corridors Status Checkpoints -->
+<div class="flex flex-col gap-2">
+<!-- Node 1: Origin -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">Kampus FT Unhas Gowa (Titik Asal)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jl. Poros Malino Km. 6, Borongloe</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-data-tabular">Subnet Gate FT</span>
+</div>
+<!-- Connector line with travel info -->
+<div class="flex items-center gap-3 px-3 -my-1 text-on-surface-variant">
+<div class="w-px h-6 bg-surface-container-highest ml-1"></div>
+<span class="font-body-sm text-body-sm italic">Jarak tempuh rata-rata: 24,8 km via Tol Layang / Pettarani</span>
+</div>
+<!-- Node 2: Destination -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary"></span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">Kampus Unhas Tamalanrea / Perintis</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rektorat, Bank BNI KCP, &amp; Lembaga Pusat</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">2 Pegawai Sedang Berada di Sini</span>
+</div>
+</div>
+</div>
+</div>
+<!-- WIDGET 2: SOP & ATURAN OTOMATIS SIMPEG ON-TIME -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-md gap-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">gavel</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">SOP &amp; Ambang Batas Toleransi FT</h3>
+</div>
+<div class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<div class="p-2.5 rounded bg-surface-container-low flex items-start gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">info</span>
+<span><strong>Toleransi 15 Menit:</strong> Bila lewat dari batas waktu tanpa konfirmasi izin perpanjangan, status berubah otomatis menjadi <em>Terlambat Kembali</em> pada SIMPEG FT.</span>
+</div>
+<div class="p-2.5 rounded bg-surface-container-low flex items-start gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">wifi_tethering</span>
+<span><strong>Validasi Kembali:</strong> Pegawai wajib tapping kartu presensi RFID atau terkoneksi subnet Wi-Fi resmi Kampus Gowa untuk menutup tiket izin otomatis.</span>
+</div>
+</div>
+</div>
+<!-- WIDGET 3: REAL-TIME AUDIT STREAM FEED -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">stream</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Log Audit Aktivitas Terkini</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-data-tabular">Hari Ini, 26 Okt 2026</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Feed Item 1 -->
+<div class="flex items-start gap-3 relative">
+<div class="w-2 h-2 rounded-full bg-secondary shrink-0 mt-1.5 ring-4 ring-secondary-container"></div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-primary">Faisal Basri, A.Md.</span>
+<span class="font-data-tabular text-body-sm text-outline">10:14 WITA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Memperbarui status mobile: Berkas Giro Operasional telah diverifikasi teller BNI, estimasi perjalanan kembali ke Gowa pukul 10:25.</p>
+<span class="font-label-sm text-label-sm text-secondary mt-0.5">GPS: KCP BNI Unhas (Akurasi ±4m)</span>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Feed Item 2 -->
+<div class="flex items-start gap-3 relative">
+<div class="w-2 h-2 rounded-full bg-secondary shrink-0 mt-1.5 ring-4 ring-surface-container-highest"></div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-primary">Nur Fadilah, S.T., M.T.</span>
+<span class="font-data-tabular text-body-sm text-outline">10:02 WITA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Tiba di titik pertama: Gedung LPMP Sulsel untuk verifikasi berkas borang akreditasi sebelum lanjut ke Rektorat.</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Kendaraan: Minibus FT-02 (Driver: Pak Sudirman)</span>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Feed Item 3: Return event -->
+<div class="flex items-start gap-3 relative">
+<div class="w-2 h-2 rounded-full bg-surface-container-highest shrink-0 mt-1.5"></div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant">Ridwan Hakim, S.T.</span>
+<span class="font-data-tabular text-body-sm text-outline">09:30 WITA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Menyelesaikan izin kedinasan bengkel lab mesin. Tiket izin resmi ditutup otomatis (Selesai Tepat Waktu).</p>
+<span class="font-label-sm text-label-sm text-secondary mt-0.5">Tervalidasi Subnet IP 10.12.80.14 (Gedung Sipil/Mesin FT)</span>
+</div>
+</div>
+<div class="h-px bg-surface-container"></div>
+<!-- Feed Item 4: Departure event -->
+<div class="flex items-start gap-3 relative">
+<div class="w-2 h-2 rounded-full bg-surface-container-highest shrink-0 mt-1.5"></div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant">Nur Fadilah, S.T., M.T.</span>
+<span class="font-data-tabular text-body-sm text-outline">10:00 WITA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gate Out: Kendaraan meninggalkan Pos Utama Kampus FT Gowa.</p>
+</div>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low text-center">
+<button class="font-label-sm text-label-sm text-secondary hover:underline" type="button">Lihat Seluruh Riwayat Log Audit Hari Ini (42 Entri)</button>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for auto-incrementing time simulation
+  (function initDashboardClock() {
+    // Subtle pulse indicator log
+    console.log("FT Unhas Izin Monitor: Live Stream Engine Started [Sync Interval 30s]");
+  })();
+</script></main></div></body></html>

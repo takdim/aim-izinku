@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block title %}Penyelesaian Izin & Bukti Kehadiran - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<!-- TOP FIXED BAR -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.beranda') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Penyelesaian Izin Keluar</h1>
+    </div>
+    <span class="text-xs text-secondary font-semibold uppercase tracking-wider">Audit Presensi</span>
+  </div>
+</header>
+
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-20 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-4">
+
+    <!-- 1. HEADER STATUS RINGKAS & SLA COUNTDOWN -->
+    <div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-2">
+        <span class="px-2.5 py-0.5 rounded-md bg-surface-container-high text-on-surface-variant text-[11px] font-bold tracking-wide uppercase">
+          Tiket #{{ leave_req.nomor_tiket }}
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold
+          {% if leave_req.status == 'terlambat_kembali' %}
+            bg-error-container text-on-error-container
+          {% else %}
+            bg-emerald-50 text-emerald-800 border border-emerald-200
+          {% endif %}">
+          <span class="w-1.5 h-1.5 rounded-full {% if leave_req.status == 'terlambat_kembali' %}bg-error animate-ping{% else %}bg-emerald-600 animate-pulse{% endif %}"></span>
+          <span>{% if leave_req.status == 'terlambat_kembali' %}Terlambat Kembali{% else %}Sedang Berlangsung{% endif %}</span>
+        </span>
+      </div>
+
+      <div>
+        <h2 class="font-display font-bold text-lg text-primary tracking-tight leading-snug">
+          Konfirmasi Kepulangan Pegawai
+        </h2>
+        <p class="text-xs text-on-surface-variant mt-0.5">
+          {{ leave_req.alasan }} ({{ leave_req.tujuan or 'Tujuan Resmi' }})
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <div class="bg-surface-container-low p-2.5 rounded-xl flex flex-col">
+          <span class="text-[11px] text-on-surface-variant">Batas Rencana Tiba</span>
+          <span class="font-display font-bold text-base text-primary mt-0.5">
+            {{ leave_req.jam_pulang_rencana|time_format }} <span class="text-xs font-normal text-on-surface-variant">WITA</span>
+          </span>
+        </div>
+        <div class="bg-surface-container-low p-2.5 rounded-xl flex flex-col">
+          <span class="text-[11px] text-on-surface-variant">Waktu Server Saat Ini</span>
+          <span class="font-display font-bold text-base text-primary mt-0.5" id="live-server-clock">
+            {{ now_datetime.strftime("%H:%M") }} <span class="text-xs font-normal text-on-surface-variant">WITA</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. VERIFIKASI JARINGAN KANTOR (FR-14a Subnet Validation) -->
+    <div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center shrink-0 {% if is_office %}text-emerald-600{% else %}text-amber-600{% endif %}">
+          <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">
+            {% if is_office %}wifi_find{% else %}wifi_off{% endif %}
+          </span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="font-display font-bold text-xs text-primary">
+              {% if is_office %}Validasi Jaringan Terpenuhi{% else %}Jaringan Di Luar Kantor{% endif %}
+            </span>
+            <span class="w-2 h-2 rounded-full {% if is_office %}bg-emerald-500 animate-pulse{% else %}bg-amber-500{% endif %}"></span>
+          </div>
+          <p class="text-xs text-on-surface-variant mt-0.5 leading-snug">
+            {{ network_msg }}
+          </p>
+          <div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface-variant font-mono text-[11px]">
+            <span class="material-symbols-outlined text-[14px]">lan</span>
+            <span>IP: {{ client_ip }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. FORM BUKTI PRESENSI FISIK (KAMERA LANGSUNG / UPLOAD) -->
+    <form action="{{ url_for('pegawai.penyelesaian', request_id=leave_req.id) }}" method="POST" enctype="multipart/form-data" id="completion-form" class="flex flex-col gap-4">
+      
+      <div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <label class="font-display font-bold text-xs text-primary flex items-center gap-1.5 uppercase tracking-wide">
+            <span class="material-symbols-outlined text-[18px] text-secondary">photo_camera</span>
+            Bukti Kehadiran Fisik (Wajib)
+          </label>
+          <span class="text-[11px] text-secondary font-semibold">Live Camera Audit</span>
+        </div>
+
+        <!-- Pill Kategori Bukti -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1" id="category-pills">
+          <button type="button" onclick="selectBuktiCategory(this, 'Foto di Meja Kerja')" class="px-3 py-1.5 rounded-full bg-primary text-on-primary text-xs font-semibold flex items-center gap-1 shadow-sm shrink-0 cat-pill">
+            <span class="material-symbols-outlined text-[15px]">desk</span>
+            <span>Foto di Meja Kerja</span>
+          </button>
+          <button type="button" onclick="selectBuktiCategory(this, 'Lobi / Ruang TU')" class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium flex items-center gap-1 shrink-0 cat-pill">
+            <span class="material-symbols-outlined text-[15px]">meeting_room</span>
+            <span>Lobi / Ruang TU</span>
+          </button>
+          <button type="button" onclick="selectBuktiCategory(this, 'Surat Tugas Bertandatangan')" class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-medium flex items-center gap-1 shrink-0 cat-pill">
+            <span class="material-symbols-outlined text-[15px]">badge</span>
+            <span>Surat Tugas Bertandatangan</span>
+          </button>
+        </div>
+        <input type="hidden" name="tipe_bukti" id="tipe_bukti_input" value="Foto di Meja Kerja"/>
+        <input type="hidden" name="camera_image" id="camera_image_input" value=""/>
+
+        <!-- CAMERA VIEWPORT / PREVIEW CONTAINER -->
+        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner bg-primary flex flex-col justify-between p-3.5 border border-surface-container" id="camera-viewport">
+          
+          <!-- Live Video element -->
+          <video id="webcam" autoplay playsinline muted class="absolute inset-0 w-full h-full object-cover hidden"></video>
+          <!-- Captured photo image view -->
+          <img id="photo-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT70pMWbDxz2Bc8IBM0S76_GzBbRE769RGrTpNQxp_nHEVL_VgGgiMlvLJk3wAgxxyn3sedhP4X1yFplVRuiTHwglbd1fKa-jbv6u5Q7bESFeWqBjhffMm11d7KEJY9Iwmg5a_BNEkwfp5fA1ZSrw7DJTKtZkLlDgUfGiEoX9RN5BHODbXZwqX-fRKUe7oFXwWHqeRSXz7AR3cBWfi6YBNKjz7wRUdSYH-HCvUpus" class="absolute inset-0 w-full h-full object-cover" alt="Pratinjau Bukti"/>
+          <canvas id="camera-canvas" class="hidden"></canvas>
+
+          <!-- Vignette overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/40 pointer-events-none"></div>
+
+          <!-- Camera HUD Top Bar -->
+          <div class="relative z-10 flex items-center justify-between text-on-primary">
+            <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-primary/70 backdrop-blur-md text-[11px] font-mono">
+              <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+              <span>SECURE CAPTURE</span>
+            </div>
+            <div class="px-2.5 py-1 rounded-lg bg-primary/70 backdrop-blur-md text-[11px] font-medium">
+              <span>Watermark Server Terkunci</span>
+            </div>
+          </div>
+
+          <!-- Camera Watermark HUD Bottom -->
+          <div class="relative z-10 flex flex-col gap-0.5 text-on-primary text-[11px] font-mono bg-primary/75 backdrop-blur-md p-2.5 rounded-xl border border-white/10">
+            <div class="flex items-center justify-between">
+              <span>Tiket: #{{ leave_req.nomor_tiket }}</span>
+              <span id="hud-time">{{ now_datetime.strftime("%H:%M:%S") }} WITA</span>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-white/80">
+              <span>IP: {{ client_ip }}</span>
+              <span>FT Unhas Gowa</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Camera Controls -->
+        <div class="flex items-center gap-2 pt-1">
+          <button type="button" id="btn-start-camera" onclick="startCamera()" class="flex-1 h-10 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors">
+            <span class="material-symbols-outlined text-[18px]">videocam</span>
+            <span>Aktifkan Kamera Live</span>
+          </button>
+          <button type="button" id="btn-snap-photo" onclick="takeSnapshot()" class="hidden flex-1 h-10 rounded-xl bg-secondary hover:bg-secondary/90 text-on-secondary font-semibold text-xs flex items-center justify-center gap-1.5 shadow transition-colors">
+            <span class="material-symbols-outlined text-[18px]">camera</span>
+            <span>Ambil Foto Bukti</span>
+          </button>
+        </div>
+
+        <!-- Fallback File Picker -->
+        <div class="pt-2 border-t border-surface-container flex flex-col gap-1.5">
+          <label class="text-[11px] font-semibold text-on-surface-variant flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">upload_file</span>
+            Atau Unggah Foto dari Perangkat:
+          </label>
+          <input
+            type="file"
+            name="file_upload"
+            id="file_upload"
+            accept="image/*"
+            capture="environment"
+            onchange="handleFileUpload(this)"
+            class="w-full p-2 rounded-xl bg-surface-container-low border border-outline-variant text-xs text-on-surface file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-surface-container-high file:text-primary"
+          />
+        </div>
+
+        <!-- Keterangan Tambahan -->
+        <div class="flex flex-col gap-1 pt-1">
+          <label class="text-xs font-semibold text-on-surface">Catatan / Keterangan Kehadiran (Opsional)</label>
+          <input
+            type="text"
+            name="keterangan"
+            placeholder="Contoh: Sudah tiba di Lab Jaringan pukul 10:35 WITA..."
+            class="w-full h-10 px-3 rounded-xl bg-surface-container-low border border-outline-variant text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+          />
+        </div>
+      </div>
+
+      <!-- 4. SUBMIT BUTTON -->
+      <button
+        type="submit"
+        id="btn-submit-return"
+        {% if not is_office %}disabled{% endif %}
+        class="w-full h-12 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99]
+          {% if is_office %}
+            bg-primary hover:bg-primary-container text-on-primary cursor-pointer
+          {% else %}
+            bg-surface-container text-on-surface-variant opacity-60 cursor-not-allowed
+          {% endif %}"
+      >
+        <span class="material-symbols-outlined text-[20px]">task_alt</span>
+        <span>Konfirmasi Sudah Kembali & Tutup Izin</span>
+      </button>
+
+      {% if not is_office %}
+      <p class="text-[11px] text-error text-center -mt-2">
+        * Tombol terkunci karena Anda belum terhubung ke jaringan kantor FT Unhas. Gunakan <a href="{{ url_for('pegawai.form_pengecualian', request_id=leave_req.id) }}" class="underline font-bold">Jalur Pengecualian</a> jika ada kendala jaringan.
+      </p>
+      {% endif %}
+
+    </form>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  // Category Pill Selector
+  function selectBuktiCategory(btn, category) {
+    document.querySelectorAll('.cat-pill').forEach(b => {
+      b.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+      b.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'font-medium');
+    });
+    btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+    btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'font-medium');
+    document.getElementById('tipe_bukti_input').value = category;
+  }
+
+  // Camera handling with HTML5 WebRTC
+  let videoStream = null;
+
+  async function startCamera() {
+    const video = document.getElementById('webcam');
+    const preview = document.getElementById('photo-preview');
+    const startBtn = document.getElementById('btn-start-camera');
+    const snapBtn = document.getElementById('btn-snap-photo');
+
+    try {
+      videoStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } }
+      });
+      video.srcObject = videoStream;
+      video.classList.remove('hidden');
+      preview.classList.add('hidden');
+      startBtn.classList.add('hidden');
+      snapBtn.classList.remove('hidden');
+    } catch (err) {
+      alert("Tidak dapat mengakses kamera: " + err.message + ". Anda dapat menggunakan tombol unggah berkas.");
+    }
+  }
+
+  function takeSnapshot() {
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('camera-canvas');
+    const preview = document.getElementById('photo-preview');
+    const snapBtn = document.getElementById('btn-snap-photo');
+    const startBtn = document.getElementById('btn-start-camera');
+    const hiddenInput = document.getElementById('camera_image_input');
+
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Burn watermark
+    ctx.fillStyle = "rgba(0, 16, 38, 0.7)";
+    ctx.fillRect(0, canvas.height - 40, canvas.width, 40);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "14px Inter, sans-serif";
+    const nowStr = new Date().toLocaleTimeString('id-ID') + " WITA • {{ client_ip }} • Tiket #{{ leave_req.nomor_tiket }}";
+    ctx.fillText(nowStr, 12, canvas.height - 15);
+
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+    hiddenInput.value = dataUrl;
+    preview.src = dataUrl;
+    preview.classList.remove('hidden');
+    video.classList.add('hidden');
+
+    // Stop stream
+    if (videoStream) {
+      videoStream.getTracks().forEach(t => t.stop());
+    }
+
+    snapBtn.classList.add('hidden');
+    startBtn.classList.remove('hidden');
+    startBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">refresh</span><span>Ambil Ulang Foto</span>';
+  }
+
+  function handleFileUpload(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('photo-preview').src = e.target.result;
+        document.getElementById('photo-preview').classList.remove('hidden');
+        document.getElementById('webcam').classList.add('hidden');
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Update clock every second
+  setInterval(() => {
+    const now = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} WITA`;
+    const el = document.getElementById('hud-time');
+    if (el) el.innerText = timeStr;
+  }, 1000);
+</script>
+{% endblock %}

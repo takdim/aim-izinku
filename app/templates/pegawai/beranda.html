@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}Beranda Pegawai - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<!-- TOP FIXED APP BAR -->
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-on-primary">
+        <span class="material-symbols-outlined text-[20px]">account_balance</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-display font-bold text-base text-primary leading-tight">Izin Monitor</span>
+        <span class="text-[10px] text-secondary font-semibold uppercase tracking-wider">Universitas Hasanuddin</span>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-2">
+      <button onclick="toggleNotifications()" aria-label="Notifikasi" class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[22px]">notifications</span>
+        {% if unread_count > 0 %}
+        <span id="notif-badge" class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span>
+        {% endif %}
+      </button>
+
+      <!-- User avatar dropdown / quick switch -->
+      <a href="{{ url_for('auth.logout') }}" title="Keluar / Ganti Akun" class="flex items-center gap-1.5 p-1 rounded-full hover:bg-surface-container transition-colors">
+        <div class="w-8 h-8 rounded-full overflow-hidden bg-primary flex items-center justify-center text-on-primary text-xs font-bold">
+          {% if current_user.foto_profil %}
+          <img src="{{ current_user.foto_profil }}" class="w-full h-full object-cover" alt="Foto Profil"/>
+          {% else %}
+          {{ current_user.nama[:1] }}
+          {% endif %}
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-on-surface-variant">logout</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTAINER (Mobile-First Canvas) -->
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-24 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-4">
+
+    <!-- 1. PROFILE & IP NETWORK CARD -->
+    <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container p-4 flex flex-col gap-3">
+      <div class="flex items-center gap-3.5">
+        <div class="relative w-14 h-14 rounded-full overflow-hidden shrink-0 bg-surface-container-high border-2 border-secondary/20 shadow-inner">
+          {% if current_user.foto_profil %}
+          <img src="{{ current_user.foto_profil }}" class="w-full h-full object-cover" alt="{{ current_user.nama }}"/>
+          {% else %}
+          <div class="w-full h-full flex items-center justify-center bg-primary-container text-on-primary font-bold text-lg">
+            {{ current_user.nama[:2] }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="flex flex-col min-w-0 flex-1">
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-bold text-base text-primary truncate">{{ current_user.nama }}</span>
+            <span class="material-symbols-outlined text-[16px] text-secondary shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+          </div>
+          <span class="text-xs text-on-surface-variant truncate">NIP. {{ current_user.nip }}</span>
+          <span class="text-xs text-secondary font-medium truncate mt-0.5">{{ current_user.jabatan }} • {{ current_user.unit }}</span>
+        </div>
+      </div>
+
+      <!-- Live IP Connection Badge (FR-14a) -->
+      <div class="flex items-center justify-between bg-surface-container-low px-3 py-2 rounded-xl text-xs">
+        <div class="flex items-center gap-2 truncate">
+          <span class="w-2.5 h-2.5 rounded-full {% if is_office %}bg-emerald-500 animate-pulse{% else %}bg-amber-500{% endif %} shrink-0"></span>
+          <span class="text-on-surface-variant truncate font-medium">
+            {% if is_office %}
+              Terhubung Jaringan Kantor (IP: {{ client_ip }})
+            {% else %}
+              Di Luar Jaringan Kantor (IP: {{ client_ip }})
+            {% endif %}
+          </span>
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-secondary shrink-0">wifi</span>
+      </div>
+    </div>
+
+    <!-- 2. ACTIVE OUTSIDE TICKET (IF ANY) -->
+    {% if active_request %}
+    <div class="bg-surface-container-lowest rounded-2xl shadow-md border border-secondary-container/30 p-5 flex flex-col gap-4 relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-secondary-container/20 blur-2xl pointer-events-none"></div>
+      
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider
+          {% if active_request.status == 'terlambat_kembali' %}
+            bg-error-container text-on-error-container
+          {% elif active_request.status == 'sedang_di_luar' %}
+            bg-amber-100 text-amber-800
+          {% else %}
+            bg-blue-100 text-blue-800
+          {% endif %}">
+          <span class="w-1.5 h-1.5 rounded-full {% if active_request.status == 'terlambat_kembali' %}bg-error animate-ping{% else %}bg-amber-600 animate-pulse{% endif %}"></span>
+          <span>
+            {% if active_request.status == 'terlambat_kembali' %}
+              Terlambat Kembali
+            {% elif active_request.status == 'sedang_di_luar' %}
+              Sedang di Luar Kantor
+            {% else %}
+              Izin Disetujui
+            {% endif %}
+          </span>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-on-surface-variant font-medium">
+          <span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+          <span>{{ active_request.jam_pergi|time_format }} - {{ active_request.jam_pulang_rencana|time_format }} WITA</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <h2 class="font-display font-bold text-base text-primary leading-snug">{{ active_request.alasan }}</h2>
+        <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+          <span class="material-symbols-outlined text-[16px] text-secondary shrink-0">location_on</span>
+          <span class="truncate font-medium">{{ active_request.tujuan or 'Tujuan resmi instansi' }}</span>
+        </div>
+      </div>
+
+      <!-- Countdown & SLA progress -->
+      <div class="bg-surface-container-low rounded-xl p-3.5 flex flex-col gap-2">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-on-surface-variant">Batas Rencana Pulang</span>
+          <span class="font-display font-bold {% if active_request.status == 'terlambat_kembali' %}text-error{% else %}text-primary{% endif %}">
+            Pukul {{ active_request.jam_pulang_rencana|time_format }} WITA
+          </span>
+        </div>
+        <div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+          <div class="h-full bg-secondary rounded-full transition-all duration-500" style="width: 75%;"></div>
+        </div>
+        <div class="flex justify-between items-center text-[11px] text-on-surface-variant">
+          <span>Tiket: #{{ active_request.nomor_tiket }}</span>
+          <span>Estimasi Jam Kerja Terpakai</span>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex flex-col gap-2 pt-1">
+        <a href="{{ url_for('pegawai.penyelesaian', request_id=active_request.id) }}" class="w-full h-11 bg-primary hover:bg-primary-container text-on-primary rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99]">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>Konfirmasi Sudah Kembali & Unggah Bukti</span>
+        </a>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="document.getElementById('perpanjangan-modal').classList.remove('hidden')" type="button" class="h-10 bg-surface-container-low hover:bg-surface-container text-primary rounded-xl font-medium text-xs flex items-center justify-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[16px]">more_time</span>
+            <span>Perpanjang Waktu</span>
+          </button>
+          <a href="{{ url_for('pegawai.form_pengecualian', request_id=active_request.id) }}" class="h-10 bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-error rounded-xl font-medium text-xs flex items-center justify-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[16px]">help_outline</span>
+            <span>Jalur Pengecualian</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL PERPANJANGAN WAKTU -->
+    <div id="perpanjangan-modal" class="hidden fixed inset-0 z-50 bg-primary/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-surface-container-lowest rounded-2xl shadow-2xl border border-surface-container max-w-sm w-full p-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display font-bold text-base text-primary">Ajukan Perpanjangan Jam</h3>
+          <button onclick="document.getElementById('perpanjangan-modal').classList.add('hidden')" class="text-on-surface-variant hover:text-primary">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+        <form action="{{ url_for('pegawai.ajukan_perpanjangan', request_id=active_request.id) }}" method="POST" class="flex flex-col gap-3">
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-on-surface">Jam Pulang Baru (WITA)</label>
+            <input type="time" name="jam_pulang_baru" required class="h-10 px-3 rounded-lg border border-outline-variant text-sm"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-on-surface">Alasan Perpanjangan</label>
+            <textarea name="alasan" required rows="2" placeholder="Contoh: Antrean di bank padat, penambahan agenda rapat..." class="p-2.5 rounded-lg border border-outline-variant text-xs"></textarea>
+          </div>
+          <button type="submit" class="h-10 mt-1 bg-primary text-on-primary rounded-xl font-semibold text-xs shadow">Kirim ke Atasan</button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- 3. ACTION TILES (AJUKAN IZIN KELUAR & HARIAN) -->
+    <div class="grid grid-cols-2 gap-3">
+      <a href="{{ url_for('pegawai.ajukan_keluar') }}" class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col gap-2 hover:shadow-md hover:border-secondary transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+          <span class="material-symbols-outlined text-[20px]">timer_off</span>
+        </div>
+        <div class="flex flex-col mt-1">
+          <span class="font-display font-bold text-sm text-primary leading-tight">Izin Keluar</span>
+          <span class="text-[11px] text-on-surface-variant leading-snug mt-0.5">Keperluan kantor/pribadi jam kerja</span>
+        </div>
+      </a>
+
+      <a href="{{ url_for('pegawai.ajukan_harian') }}" class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col gap-2 hover:shadow-md hover:border-secondary transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+          <span class="material-symbols-outlined text-[20px]">calendar_today</span>
+        </div>
+        <div class="flex flex-col mt-1">
+          <span class="font-display font-bold text-sm text-primary leading-tight">Izin Harian</span>
+          <span class="text-[11px] text-on-surface-variant leading-snug mt-0.5">Sakit, cuti tahunan, dinas luar</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 4. MONTHLY RECAP METRICS BENTO -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+        <div class="flex items-center justify-between text-on-surface-variant">
+          <span class="text-xs font-semibold uppercase tracking-wider">Izin Bulan Ini</span>
+          <span class="material-symbols-outlined text-[18px] text-secondary">donut_small</span>
+        </div>
+        <div class="my-2 flex items-baseline gap-1">
+          <span class="font-display font-bold text-2xl text-primary">{{ total_izin_bulan }}</span>
+          <span class="text-xs text-on-surface-variant">Kali</span>
+        </div>
+        <div class="bg-surface-container-low px-2 py-1 rounded-lg">
+          <span class="text-[11px] text-secondary font-medium">Akumulasi: {{ durasi_str }}</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-between">
+        <div class="flex items-center justify-between text-on-surface-variant">
+          <span class="text-xs font-semibold uppercase tracking-wider">Kepatuhan Bukti</span>
+          <span class="material-symbols-outlined text-[18px] text-emerald-600">verified</span>
+        </div>
+        <div class="my-2 flex items-baseline gap-1">
+          <span class="font-display font-bold text-2xl text-emerald-600">100%</span>
+          <span class="text-xs text-on-surface-variant">Valid</span>
+        </div>
+        <div class="bg-surface-container-low px-2 py-1 rounded-lg">
+          <span class="text-[11px] text-on-surface-variant">Integritas Presensi Baik</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. RECENT ACTIVITY LIST -->
+    <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container p-4 flex flex-col gap-3">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display font-bold text-sm text-primary">Riwayat Terkini</h3>
+        <a href="{{ url_for('pegawai.riwayat') }}" class="text-xs text-secondary hover:underline font-semibold">Lihat Semua &rarr;</a>
+      </div>
+
+      <div class="flex flex-col divide-y divide-surface-container">
+        {% for r in recent_requests %}
+        <a href="{{ url_for('pegawai.detail', request_id=r.id) }}" class="py-2.5 flex items-center justify-between gap-3 hover:bg-surface-container-low px-1 rounded-lg transition-colors">
+          <div class="flex flex-col min-w-0">
+            <span class="text-xs font-semibold text-primary truncate">{{ r.alasan }}</span>
+            <span class="text-[11px] text-on-surface-variant truncate">
+              #{{ r.nomor_tiket }} • {{ r.tanggal_mulai|date_format }}
+            </span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shrink-0
+            {% if r.status in ('selesai', 'disetujui') %}bg-emerald-100 text-emerald-800
+            {% elif r.status == 'sedang_di_luar' %}bg-sky-100 text-sky-800
+            {% elif r.status in ('terlambat_kembali', 'selesai_terlambat', 'ditolak') %}bg-error-container text-on-error-container
+            {% else %}bg-amber-100 text-amber-800{% endif %}">
+            {{ r.status.replace('_', ' ') }}
+          </span>
+        </a>
+        {% else %}
+        <div class="py-4 text-center text-xs text-on-surface-variant">Belum ada riwayat pengajuan izin.</div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- BOTTOM NAVIGATION BAR (FOR MOBILE/DESKTOP CONVENIENCE) -->
+<nav class="fixed bottom-0 w-full z-40 pb-safe bg-surface-container-lowest/95 backdrop-blur-md border-t border-surface-container shadow-lg">
+  <div class="h-14 max-w-xl mx-auto px-6 flex items-center justify-around">
+    <a href="{{ url_for('pegawai.beranda') }}" class="flex flex-col items-center gap-0.5 text-secondary font-bold">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[10px]">Beranda</span>
+    </a>
+    <a href="{{ url_for('pegawai.ajukan_keluar') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">add_circle</span>
+      <span class="text-[10px]">Ajukan</span>
+    </a>
+    <a href="{{ url_for('pegawai.riwayat') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">history</span>
+      <span class="text-[10px]">Riwayat</span>
+    </a>
+    {% if current_user.is_atasan %}
+    <a href="{{ url_for('atasan.dashboard') }}" class="flex flex-col items-center gap-0.5 text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[10px]">Pimpinan</span>
+    </a>
+    {% endif %}
+  </div>
+</nav>
+{% endblock %}

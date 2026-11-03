@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Jalur Pengecualian - Izin Monitor Unhas{% endblock %}
+
+{% block body_content %}
+<header class="fixed top-0 w-full z-40 pt-safe bg-surface/90 backdrop-blur-xl border-b border-surface-container shadow-sm">
+  <div class="h-16 max-w-xl mx-auto px-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="{{ url_for('pegawai.beranda') }}" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+      </a>
+      <h1 class="font-display font-bold text-base text-primary tracking-tight">Jalur Pengecualian</h1>
+    </div>
+    <span class="text-xs text-error font-semibold uppercase tracking-wider">Disposisi Pimpinan</span>
+  </div>
+</header>
+
+<main class="flex-1 flex flex-col items-center w-full pt-20 pb-20 px-4 bg-surface">
+  <div class="flex flex-col w-full max-w-xl gap-5">
+
+    <div class="flex flex-col gap-1 pt-1">
+      <div class="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container text-[11px] font-semibold uppercase tracking-wider">
+        <span class="material-symbols-outlined text-[13px]">warning</span>
+        FR-21 JALUR PENGECUALIAN RESMI
+      </div>
+      <h1 class="font-display text-2xl font-bold text-primary tracking-tight">
+        Tutup Izin Tanpa Bukti Foto
+      </h1>
+      <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+        Gunakan jalur ini apabila Anda mengalami kendala teknis (kamera rusak, penugasan khusus rahasia, atau jaringan terputus) sehingga bukti fisik tidak dapat diunggah.
+      </p>
+    </div>
+
+    <!-- Ticket Summary Card -->
+    <div class="p-4 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col gap-2">
+      <div class="flex items-center justify-between text-xs">
+        <span class="font-semibold text-primary">Tiket #{{ leave_req.nomor_tiket }}</span>
+        <span class="text-on-surface-variant">{{ leave_req.tanggal_mulai|date_format }}</span>
+      </div>
+      <p class="text-xs text-on-surface font-medium">{{ leave_req.alasan }} ({{ leave_req.tujuan or 'Tujuan Resmi' }})</p>
+      <div class="text-[11px] text-on-surface-variant">
+        Jam Rencana: {{ leave_req.jam_pergi|time_format }} - {{ leave_req.jam_pulang_rencana|time_format }} WITA
+      </div>
+    </div>
+
+    <!-- Exception Form -->
+    <form action="{{ url_for('pegawai.form_pengecualian', request_id=leave_req.id) }}" method="POST" class="flex flex-col gap-4">
+      
+      <div class="flex flex-col gap-1.5">
+        <label for="alasan" class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-error text-[18px]">report_problem</span>
+          Alasan Tidak Dapat Mengunggah Bukti (Wajib)
+        </label>
+        <textarea
+          id="alasan"
+          name="alasan"
+          required
+          rows="4"
+          placeholder="Jelaskan secara rinci alasan tidak tersedianya bukti kehadiran foto atau kendala jaringan yang dialami..."
+          class="w-full p-3.5 rounded-2xl bg-surface-container-low border border-outline-variant text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary leading-relaxed"
+        ></textarea>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-surface-container-low border border-surface-container text-xs text-on-surface-variant flex items-start gap-2.5 leading-relaxed">
+        <span class="material-symbols-outlined text-[20px] text-secondary shrink-0 mt-0.5">verified_user</span>
+        <span>
+          Permohonan pengecualian ini akan dikirimkan kepada <strong>{{ leave_req.pegawai.atasan.nama if leave_req.pegawai.atasan else 'Pimpinan' }}</strong> untuk ditelaah dan diputuskan secara resmi.
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full h-12 rounded-xl bg-error hover:bg-error/90 text-on-error font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99] mt-2"
+      >
+        <span class="material-symbols-outlined text-[18px]">send</span>
+        <span>Kirim Permohonan Pengecualian</span>
+      </button>
+
+    </form>
+  </div>
+</main>
+{% endblock %}

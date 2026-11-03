@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Izin Monitor Unhas</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed": "#001944", "on-secondary-fixed-variant": "#1b448d", "on-tertiary-fixed": "#0d1c2e", "on-background": "#131b2e", "error": "#ba1a1a", "tertiary-container": "#182638", "surface-container-highest": "#dae2fd", "on-secondary": "#ffffff", "surface-bright": "#faf8ff", "outline": "#74777f", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c4c6cf", "tertiary": "#031122", "inverse-primary": "#b1c7f0", "tertiary-fixed-dim": "#b9c7df", "surface": "#faf8ff", "secondary-container": "#8eafff", "surface-container-high": "#e2e7ff", "on-tertiary-container": "#7f8da3", "on-error": "#ffffff", "surface-container-low": "#f2f3ff", "inverse-surface": "#283044", "on-primary-container": "#778db2", "on-surface": "#131b2e", "surface-tint": "#495f82", "on-secondary-container": "#164089", "primary-container": "#0b2545", "on-tertiary-fixed-variant": "#3a485b", "on-error-container": "#93000a", "secondary": "#385ca6", "surface-dim": "#d2d9f4", "on-primary-fixed-variant": "#314769", "surface-variant": "#dae2fd", "on-primary": "#ffffff", "secondary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#d5e3fc", "background": "#faf8ff", "secondary-fixed": "#d9e2ff", "error-container": "#ffdad6", "on-surface-variant": "#44474e", "primary": "#001026", "on-primary-fixed": "#001c3b", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b1c7f0", "surface-container": "#eaedff", "primary-fixed": "#d5e3ff" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-desktop": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem" }, fontFamily: { "label-lg": ["Inter"], "body-md": ["Inter"], "data-tabular": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "data-metric": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "data-tabular": ["13px", { lineHeight: "18px", fontWeight: "500" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "display-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "display-lg": ["36px", { lineHeight: "44px", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }], "data-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; background-color: #faf8ff; } body { overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[20px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight tracking-tight">Izin Monitor</span><span class="font-label-sm text-label-sm text-secondary leading-none uppercase tracking-wider">Universitas Hasanuddin</span></div></div><div class="flex items-center gap-space-xs"><a aria-label="Notifikasi" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" data-path="notifikasi" href="#"><span class="material-symbols-outlined text-[22px]">notifications</span></a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 px-space-md bg-surface"><div class="flex flex-col w-full gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Close up professional portrait of a polite 30-year-old Indonesian male university technical staff wearing formal collared batik navy blue shirt, soft cinematic campus studio lighting, shallow depth of field, sharp eyes, high resolution" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSVIbd3DNfUSov3boI2_FRipaCS8gD7ktMWlkCsyXZ4nZjkGVbeKS9bo2U0_bKPW4WPcMw1SDVMmFYl2Qig2LSC9_B0ygM1z_d6F8HJ8OMKXJy1TYxuQn7j_5njL-h66m8F1HUG891tJNF6OO5sa4Nt78ep6oW5JZn5eVjjihDxT4jwUQQfxIBom4WpOsKC09xK6_RhF_GTb1WBPBxCNoq5pPUmkioQyqwFTXDn8g"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary truncate">Faisal Basri, A.Md.</span>
+<span class="material-symbols-outlined text-[16px] text-secondary flex-shrink-0" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">NIP. 199402282020121004</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium truncate mt-0.5">Teknisi Jaringan - FT Unhas Gowa</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1.5 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse flex-shrink-0"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Terhubung Jaringan FT (IP: 10.15.22.40)</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant ml-auto flex-shrink-0">wifi</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-secondary-container/15 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-1.5 bg-error-container text-on-error-container px-2.5 py-1 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Sedang di Luar Kantor</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">09:00 - 10:45 WITA</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold leading-snug">Pengurusan Buku Giro &amp; Rekening Operasional Unit</h2>
+<div class="flex items-center gap-space-xs text-on-surface-variant mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-secondary flex-shrink-0">location_on</span>
+<span class="font-body-md text-body-md truncate">BNI KCP Unhas Tamalanrea</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estimasi Batas Waktu</span>
+<span class="font-label-lg text-label-lg text-error font-bold tracking-tight" id="countdown-badge">Tersisa 28 Menit</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-500" style="width: 72%;"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Mulai: 09:00</span>
+<span class="font-label-sm text-label-sm">Tenggat: 10:45</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full h-11 bg-primary text-on-primary rounded font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow hover:bg-primary-container active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Konfirmasi Sudah Kembali</span>
+</button>
+<button class="w-full h-10 bg-surface-container-low text-on-secondary-container rounded font-label-md text-label-md flex items-center justify-center gap-space-xs hover:bg-surface-container active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">more_time</span>
+<span>Ajukan Perpanjangan Waktu</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<a class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs hover:shadow transition-shadow group" data-path="ajukan-izin" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">timer_off</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary leading-tight mt-1">Izin Keluar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-snug">Keperluan mendesak saat jam kerja</span>
+</a>
+<a class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs hover:shadow transition-shadow group" data-path="ajukan-izin" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary leading-tight mt-1">Izin Harian</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-snug">Sakit, cuti, tugas kedinasan</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md">Izin Bulan Ini</span>
+<span class="material-symbols-outlined text-[18px]">donut_small</span>
+</div>
+<div class="my-space-xs">
+<span class="font-data-metric text-data-metric text-primary leading-none">3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant ml-0.5">Kali</span>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Total 4j 15m</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md">Kepatuhan</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+</div>
+<div class="my-space-xs">
+<span class="font-data-metric text-data-metric text-primary leading-none">100%</span>
+</div>
+<div class="bg-surface-container-low px-2 py-1 rounded">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Tepat Waktu</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Aktivitas Terakhir</span>
+<a class="font-label-sm text-label-sm text-secondary hover:underline" data-path="riwayat-izin" href="#">Lihat Semua</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">router</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Perbaikan Switch Lab Elektro</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Kemarin • 13:30 - 15:00 WITA</span>
+</div>
+</div>
+<div class="bg-surface-container-highest text-on-secondary-container px-2 py-0.5 rounded flex-shrink-0">
+<span class="font-label-sm text-label-sm font-semibold uppercase">Selesai</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary truncate">Koordinasi Server Rektorat</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">18 Okt • 10:00 - 12:00 WITA</span>
+</div>
+</div>
+<div class="bg-surface-container-highest text-on-secondary-container px-2 py-0.5 rounded flex-shrink-0">
+<span class="font-label-sm text-label-sm font-semibold uppercase">Selesai</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    let minutesLeft = 28;
+    const badge = document.getElementById('countdown-badge');
+    if (!badge) return;
+    
+    const interval = setInterval(() => {
+      if (minutesLeft <= 1) {
+        clearInterval(interval);
+        badge.textContent = "Waktu Segera Habis";
+        badge.classList.add("animate-pulse");
+      } else {
+        minutesLeft--;
+        badge.textContent = `Tersisa ${minutesLeft} Menit`;
+      }
+    }, 60000);
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-2px_10px_rgba(11,37,69,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 transition-all text-primary font-semibold" data-path="beranda" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm">Beranda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="ajukan-izin" href="#"><span class="material-symbols-outlined text-[22px]">post_add</span><span class="font-label-sm text-label-sm">Ajukan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="riwayat-izin" href="#"><span class="material-symbols-outlined text-[22px]">history</span><span class="font-label-sm text-label-sm">Riwayat</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="profil-pegawai" href="#"><span class="material-symbols-outlined text-[22px]">badge</span><span class="font-label-sm text-label-sm">Profil</span></a></div></nav></body></html>

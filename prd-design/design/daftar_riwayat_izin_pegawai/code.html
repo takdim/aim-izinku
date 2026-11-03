@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>Izin Monitor Unhas</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-secondary-fixed": "#001944", "on-secondary-fixed-variant": "#1b448d", "on-tertiary-fixed": "#0d1c2e", "on-background": "#131b2e", "error": "#ba1a1a", "tertiary-container": "#182638", "surface-container-highest": "#dae2fd", "on-secondary": "#ffffff", "surface-bright": "#faf8ff", "outline": "#74777f", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c4c6cf", "tertiary": "#031122", "inverse-primary": "#b1c7f0", "tertiary-fixed-dim": "#b9c7df", "surface": "#faf8ff", "secondary-container": "#8eafff", "surface-container-high": "#e2e7ff", "on-tertiary-container": "#7f8da3", "on-error": "#ffffff", "surface-container-low": "#f2f3ff", "inverse-surface": "#283044", "on-primary-container": "#778db2", "on-surface": "#131b2e", "surface-tint": "#495f82", "on-secondary-container": "#164089", "primary-container": "#0b2545", "on-tertiary-fixed-variant": "#3a485b", "on-error-container": "#93000a", "secondary": "#385ca6", "surface-dim": "#d2d9f4", "on-primary-fixed-variant": "#314769", "surface-variant": "#dae2fd", "on-primary": "#ffffff", "secondary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#d5e3fc", "background": "#faf8ff", "secondary-fixed": "#d9e2ff", "error-container": "#ffdad6", "on-surface-variant": "#44474e", "primary": "#001026", "on-primary-fixed": "#001c3b", "inverse-on-surface": "#eef0ff", "primary-fixed-dim": "#b1c7f0", "surface-container": "#eaedff", "primary-fixed": "#d5e3ff" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "margin-desktop": "2rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1.5rem", "gutter-sm": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "gutter-lg": "2rem" }, fontFamily: { "label-lg": ["Inter"], "body-md": ["Inter"], "data-tabular": ["Inter"], "body-sm": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "data-metric": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "label-lg": ["14px", { lineHeight: "20px", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "data-tabular": ["13px", { lineHeight: "18px", fontWeight: "500" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "display-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }], "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "600" }], "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "display-lg": ["36px", { lineHeight: "44px", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }], "data-metric": ["32px", { lineHeight: "38px", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }], "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }] } } } };</script><style>@layer base { html, body { width: 100vw; margin: 0; padding: 0; background-color: #faf8ff; } body { overscroll-behavior-y: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[20px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight tracking-tight">Izin Monitor</span><span class="font-label-sm text-label-sm text-secondary leading-none uppercase tracking-wider">Universitas Hasanuddin</span></div></div><div class="flex items-center gap-space-xs"><a aria-label="Notifikasi" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" data-path="notifikasi" href="#"><span class="material-symbols-outlined text-[22px]">notifications</span></a><div class="flex items-center gap-space-xs pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 px-space-md bg-surface"><div class="flex flex-col w-full gap-space-md">
+<!-- Rekapitulasi Bulan Berjalan (Executive Header Card) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<!-- Month Selector Bar -->
+<div class="flex items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<button aria-label="Bulan sebelumnya" class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-low cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-[18px]">calendar_month</span>
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight">November 2026</span>
+<span class="material-symbols-outlined text-outline text-[16px]">arrow_drop_down</span>
+</div>
+<button aria-label="Bulan berikutnya" class="w-8 h-8 rounded-lg flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-full text-secondary">
+<span class="material-symbols-outlined text-[14px]">domain</span>
+<span class="font-label-sm text-label-sm">FT Unhas</span>
+</div>
+</div>
+<!-- Metrics Bento Strip -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Total Pengajuan & Kepatuhan -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Pengajuan</span>
+<span class="w-6 h-6 rounded-full bg-secondary-container/40 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]">assignment</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-1.5">
+<span class="font-data-metric text-data-metric text-primary leading-none">4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Agenda</span>
+</div>
+<div class="mt-2 pt-1.5 flex items-center gap-1 text-[#16A34A]">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span class="font-label-sm text-label-sm font-semibold">100% Kepatuhan</span>
+</div>
+</div>
+<!-- Durasi Jam Keluar & Disiplin -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Akumulasi Jam</span>
+<span class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-1">
+<span class="font-headline-lg text-headline-lg text-primary leading-none">5j 12m</span>
+</div>
+<div class="mt-2 pt-1.5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tepat Waktu: <strong class="text-primary font-semibold">3</strong></span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Search & Filter Controls -->
+<section class="flex flex-col gap-space-sm">
+<!-- Fast Search Field -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-8 bg-surface-container-lowest rounded-xl font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest shadow-sm" placeholder="Cari no. tiket, agenda, atau lokasi..." type="text"/>
+<button aria-label="Clear or filter" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<!-- Status Tabs (Horizontally Scrollable) -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-0.5">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shadow-sm">
+<span>Semua</span>
+<span class="w-4 h-4 rounded-full bg-surface-container-highest/30 text-on-primary text-[10px] flex items-center justify-center font-bold">12</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 shadow-sm transition-colors">
+<span>Selesai</span>
+<span class="text-outline text-label-sm font-semibold">9</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 shadow-sm transition-colors">
+<span class="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse"></span>
+<span>Sedang di Luar</span>
+<span class="text-outline text-label-sm font-semibold">1</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 shadow-sm transition-colors">
+<span>Menunggu</span>
+<span class="text-outline text-label-sm font-semibold">1</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-label-md text-label-md flex items-center gap-1 shadow-sm transition-colors">
+<span>Terlambat / Pengecualian</span>
+<span class="text-outline text-label-sm font-semibold">1</span>
+</button>
+</div>
+<!-- Category Type Segment Sub-Filter -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider px-1">Tipe:</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-secondary/10 text-secondary font-label-sm text-label-sm font-semibold cursor-pointer">
+<span class="material-symbols-outlined text-[13px]">done</span>
+        Semua Tipe
+      </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-high transition-colors">
+        Izin Keluar Sementara
+      </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm cursor-pointer hover:bg-surface-container-high transition-colors">
+        Izin Harian / Medis
+      </span>
+</div>
+</section>
+<!-- Riwayat Izin Pegawai List -->
+<section class="flex flex-col gap-space-sm mt-1">
+<!-- Card 1: BNI KCP Unhas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden transition-all active:scale-[0.99] cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#16A34A]"></div>
+<div class="flex items-start justify-between gap-space-sm pl-1">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">#IZN-2026-8812</span>
+<span class="px-2 py-0.5 rounded bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm tracking-wider uppercase font-semibold">
+              SELESAI • TEPAT WAKTU
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary mt-1 line-clamp-1">
+            BNI KCP Unhas Tamalanrea
+          </h2>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0">chevron_right</span>
+</div>
+<!-- Information Snippet -->
+<div class="mt-2.5 pl-1 flex flex-col gap-1.5">
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+          Pengurusan Buku Giro &amp; Rekening Operasional Unit FT Unhas Kampus Gowa.
+        </p>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 pt-1 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span class="font-data-tabular text-data-tabular">Senin, 3 Nov 2026</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+<span class="font-data-tabular text-data-tabular">09:00 - 10:32 WITA (1j 32m)</span>
+</div>
+</div>
+</div>
+<!-- Meta Pill & Verifikasi -->
+<div class="mt-3 pt-2.5 pl-1 flex items-center justify-between bg-surface-container-low rounded-lg px-2.5 py-1.5">
+<div class="flex items-center gap-1.5 text-[#16A34A]">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm">Terverifikasi: Foto Meja &amp; IP Kampus</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Sementara</span>
+</div>
+</div>
+<!-- Card 2: Rektorat LP2M Unhas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden transition-all active:scale-[0.99] cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#16A34A]"></div>
+<div class="flex items-start justify-between gap-space-sm pl-1">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">#IZN-2026-8805</span>
+<span class="px-2 py-0.5 rounded bg-[#DCFCE7] text-[#16A34A] font-label-sm text-label-sm tracking-wider uppercase font-semibold">
+              SELESAI
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary mt-1 line-clamp-1">
+            Gedung Rektorat Unhas / LP2M
+          </h2>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0">chevron_right</span>
+</div>
+<!-- Information Snippet -->
+<div class="mt-2.5 pl-1 flex flex-col gap-1.5">
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+          Penyerahan berkas SPJ penelitian &amp; koordinasi tanda tangan pimpinan universitas.
+        </p>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 pt-1 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span class="font-data-tabular text-data-tabular">Kamis, 30 Okt 2026</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+<span class="font-data-tabular text-data-tabular">13:30 - 15:15 WITA (1j 45m)</span>
+</div>
+</div>
+</div>
+<!-- Meta Pill & Verifikasi -->
+<div class="mt-3 pt-2.5 pl-1 flex items-center justify-between bg-surface-container-low rounded-lg px-2.5 py-1.5">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]">attachment</span>
+<span class="font-label-sm text-label-sm">Terlampir Resi Bukti Terima LP2M</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Tugas Dinas</span>
+</div>
+</div>
+<!-- Card 3: Izin Harian - Sakit Rawat Jalan RS Unhas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden transition-all active:scale-[0.99] cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex items-start justify-between gap-space-sm pl-1">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">#IZN-2026-8774</span>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm tracking-wider uppercase font-semibold">
+              SELESAI • DISAHKAN
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary mt-1 line-clamp-1">
+            Izin Harian: Sakit Rawat Jalan
+          </h2>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0">chevron_right</span>
+</div>
+<!-- Information Snippet -->
+<div class="mt-2.5 pl-1 flex flex-col gap-1.5">
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+          Surat Keterangan Istirahat Dokter (Poliklinik Penyakit Dalam RS Unhas Tamalanrea).
+        </p>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 pt-1 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span class="font-data-tabular text-data-tabular">23 - 24 Okt 2026</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">hourglass_empty</span>
+<span class="font-data-tabular text-data-tabular">Durasi 2 Hari Kerja</span>
+</div>
+</div>
+</div>
+<!-- Meta Pill & Verifikasi -->
+<div class="mt-3 pt-2.5 pl-1 flex items-center justify-between bg-surface-container-low rounded-lg px-2.5 py-1.5">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]">health_and_safety</span>
+<span class="font-label-sm text-label-sm">Dokumen Medis Resmi Terverifikasi</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Medis</span>
+</div>
+</div>
+<!-- Card 4: Laboratorium Mesin - Pengecualian Disetujui -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden transition-all active:scale-[0.99] cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#ba1a1a]"></div>
+<div class="flex items-start justify-between gap-space-sm pl-1">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">#IZN-2026-8740</span>
+<span class="px-2 py-0.5 rounded bg-[#FEE2E2] text-[#DC2626] font-label-sm text-label-sm tracking-wider uppercase font-semibold">
+              TERLAMBAT (+25m) • PENGEQUALIAN
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary mt-1 line-clamp-1">
+            Laboratorium Terpadu Mesin
+          </h2>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0">chevron_right</span>
+</div>
+<!-- Information Snippet -->
+<div class="mt-2.5 pl-1 flex flex-col gap-1.5">
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+          Perbaikan sensor PLC mesin bubut CNC (kendala kemacetan poros Gowa-Makassar).
+        </p>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 pt-1 text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span class="font-data-tabular text-data-tabular">15 Okt 2026</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">schedule</span>
+<span class="font-data-tabular text-data-tabular">10:00 - 12:45 WITA (2j 45m)</span>
+</div>
+</div>
+</div>
+<!-- Meta Pill & Verifikasi -->
+<div class="mt-3 pt-2.5 pl-1 flex items-center justify-between bg-[#FEE2E2]/40 rounded-lg px-2.5 py-1.5">
+<div class="flex items-center gap-1.5 text-[#DC2626]">
+<span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
+<span class="font-label-sm text-label-sm font-semibold">Dispensasi Disetujui KTU FT</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Khusus</span>
+</div>
+</div>
+</section>
+<!-- Download & Administrative Action Footer -->
+<section class="mt-space-sm mb-space-sm">
+<button class="w-full h-11 bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 shadow-sm font-label-lg text-label-lg hover:bg-tertiary-container transition-colors active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[20px]">sim_card_download</span>
+<span>Unduh Rekap Bulanan (PDF)</span>
+</button>
+<p class="text-center font-body-sm text-body-sm text-outline mt-2.5 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield_person</span>
+      Data terintegrasi SIMPEG &amp; Presensi FT Unhas
+    </p>
+</section>
+</div>
+<script>
+  // Aktifkan tab Riwayat pada Shell Navigation
+  document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('nav a[data-path]');
+    navItems.forEach(item => {
+      const isRiwayat = item.getAttribute('data-path') === 'riwayat-izin';
+      if (isRiwayat) {
+        item.classList.remove('text-on-surface-variant');
+        item.classList.add('text-primary', 'font-semibold');
+        const icon = item.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+        }
+      } else {
+        item.classList.remove('text-primary', 'font-semibold');
+        item.classList.add('text-on-surface-variant');
+        const icon = item.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      }
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-2px_10px_rgba(11,37,69,0.05)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="beranda" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm">Beranda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="ajukan-izin" href="#"><span class="material-symbols-outlined text-[22px]">post_add</span><span class="font-label-sm text-label-sm">Ajukan</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="riwayat-izin" href="#"><span class="material-symbols-outlined text-[22px]">history</span><span class="font-label-sm text-label-sm">Riwayat</span></a><a class="flex flex-col items-center justify-center min-w-[56px] h-12 gap-0.5 text-on-surface-variant hover:text-primary transition-all" data-path="profil-pegawai" href="#"><span class="material-symbols-outlined text-[22px]">badge</span><span class="font-label-sm text-label-sm">Profil</span></a></div></nav></body></html>
