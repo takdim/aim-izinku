@@ -65,19 +65,15 @@
         </div>
       </div>
 
-      <!-- Live IP Connection Badge (FR-14a) -->
+      <!-- Live GPS Geofence Badge -->
       <div class="flex items-center justify-between bg-surface-container-low px-3 py-2 rounded-xl text-xs">
         <div class="flex items-center gap-2 truncate">
-          <span class="w-2.5 h-2.5 rounded-full {% if is_office %}bg-emerald-500 animate-pulse{% else %}bg-amber-500{% endif %} shrink-0"></span>
-          <span class="text-on-surface-variant truncate font-medium">
-            {% if is_office %}
-              Terhubung Jaringan Kantor (IP: {{ client_ip }})
-            {% else %}
-              Di Luar Jaringan Kantor (IP: {{ client_ip }})
-            {% endif %}
+          <span id="beranda-gps-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+          <span id="beranda-gps-text" class="text-on-surface-variant truncate font-medium">
+            Geofence Area: {{ office_geofence.name }} (Radius {{ office_geofence.radius_meters|int }}m)
           </span>
         </div>
-        <span class="material-symbols-outlined text-[16px] text-secondary shrink-0">wifi</span>
+        <span class="material-symbols-outlined text-[16px] text-secondary shrink-0">location_on</span>
       </div>
     </div>
 
@@ -290,4 +286,26 @@
     {% endif %}
   </div>
 </nav>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      fetch(`/api/check-location?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+        .then(r => r.json())
+        .then(data => {
+          const textEl = document.getElementById('beranda-gps-text');
+          const dotEl = document.getElementById('beranda-gps-dot');
+          if (data.in_radius) {
+            if (textEl) textEl.innerText = `Lokasi: Di Area Kampus (${Math.round(data.distance_meters)}m dari pusat)`;
+            if (dotEl) dotEl.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0';
+          } else {
+            if (textEl) textEl.innerText = `Lokasi: Di Luar Radius Kampus (${Math.round(data.distance_meters)}m)`;
+            if (dotEl) dotEl.className = 'w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0';
+          }
+        }).catch(() => {});
+    }, () => {}, { timeout: 8000, maximumAge: 60000 });
+  }
+</script>
 {% endblock %}

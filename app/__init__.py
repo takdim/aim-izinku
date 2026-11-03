@@ -5,7 +5,7 @@ from flask_login import LoginManager, current_user
 from apscheduler.schedulers.background import BackgroundScheduler
 from app.config import Config
 from app.models import db, User, Notification
-from app.services.network import get_client_ip, is_ip_in_office_network
+from app.services.location import get_client_ip, get_office_geofence
 
 login_manager = LoginManager()
 login_manager.login_view = "auth.login"
@@ -51,7 +51,7 @@ def create_app(config_class=Config):
     @app.context_processor
     def inject_global_context():
         client_ip = get_client_ip()
-        is_office, network_msg = is_ip_in_office_network(client_ip)
+        office_geofence = get_office_geofence()
         unread_notifs_count = 0
         if current_user.is_authenticated:
             unread_notifs_count = Notification.query.filter_by(
@@ -60,8 +60,7 @@ def create_app(config_class=Config):
 
         return {
             "current_ip": client_ip,
-            "is_office_ip": is_office,
-            "office_ip_message": network_msg,
+            "office_geofence": office_geofence,
             "unread_count": unread_notifs_count,
             "now_datetime": datetime.now()
         }

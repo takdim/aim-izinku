@@ -135,7 +135,11 @@
             <div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-primary">
               <img src="/api/evidence/view/{{ e.filename }}" class="w-full h-full object-cover" alt="Bukti"/>
               <div class="absolute bottom-2 left-2 right-2 text-white font-mono text-[10px] bg-black/60 px-2 py-1 rounded backdrop-blur">
+                {% if e.latitude %}
+                GPS: {{ "%.4f"|format(e.latitude) }}, {{ "%.4f"|format(e.longitude) }} ({{ e.distance_meters|int }}m) • {{ e.waktu_unggah_server.strftime("%H:%M:%S WITA") }}
+                {% else %}
                 IP: {{ e.ip_address }} • {{ e.waktu_unggah_server.strftime("%H:%M:%S WITA") }}
+                {% endif %}
               </div>
             </div>
             <div class="flex flex-col text-xs">

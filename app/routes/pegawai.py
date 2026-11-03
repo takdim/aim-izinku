@@ -6,7 +6,7 @@ from app.models import (
     db, LeaveRequest, LeaveType, Evidence, Extension, ExceptionRequest,
     Notification, AuditLog, User
 )
-from app.services.network import get_client_ip, is_ip_in_office_network
+from app.services.location import get_client_ip, is_gps_within_office, get_office_geofence
 from app.services.storage import save_and_compress_evidence
 from app.services.scheduler import check_and_update_leave_statuses
 
@@ -23,7 +23,7 @@ def beranda():
     # Update statuses
     check_and_update_leave_statuses()
     client_ip = get_client_ip()
-    is_office, network_msg = is_ip_in_office_network(client_ip)
+    office_geofence = get_office_geofence()
 
     # Active leave request (priority: sedang_di_luar, terlambat_kembali, disetujui, diajukan)
     active_request = LeaveRequest.query.filter(
@@ -60,8 +60,7 @@ def beranda():
         "pegawai/beranda.html",
         active_request=active_request,
         client_ip=client_ip,
-        is_office=is_office,
-        network_msg=network_msg,
+        office_geofence=office_geofence,
         total_izin_bulan=total_izin_bulan,
         durasi_str=f"{jam_keluar}j {menit_keluar}m",
         recent_requests=recent_requests
@@ -221,12 +220,16 @@ def penyelesaian(request_id):
     leave_req = LeaveRequest.query.filter_by(id=request_id, user_id=current_user.id).first_or_404()
 
     client_ip = get_client_ip()
-    is_office, network_msg = is_ip_in_office_network(client_ip)
+    office_geofence = get_office_geofence()
 
     if request.method == "POST":
-        # Check IP enforcement
-        if not is_office:
-            flash("Gagal: Anda harus terhubung ke jaringan kantor Unhas untuk konfirmasi kepulangan.", "error")
+        # Check GPS Geofence enforcement
+        lat = request.form.get("latitude")
+        lon = request.form.get("longitude")
+
+        is_valid_loc, distance, loc_msg, _ = is_gps_within_office(lat, lon)
+        if not is_valid_loc:
+            flash(f"Gagal verifikasi lokasi: {loc_msg}", "error")
             return redirect(url_for("pegawai.penyelesaian", request_id=request_id))
 
         tipe_bukti = request.form.get("tipe_bukti", "Foto di Meja Kerja")
@@ -247,7 +250,14 @@ def penyelesaian(request_id):
             flash(f"Gagal memproses bukti foto: {str(e)}", "error")
             return redirect(url_for("pegawai.penyelesaian", request_id=request_id))
 
-        # Record Evidence
+        # Parse GPS coordinates
+        try:
+            lat_float = float(lat) if lat else None
+            lon_float = float(lon) if lon else None
+        except ValueError:
+            lat_float, lon_float = None, None
+
+        # Record Evidence with GPS location & distance
         evidence = Evidence(
             request_id=leave_req.id,
             filename=filename,
@@ -255,6 +265,9 @@ def penyelesaian(request_id):
             tipe_bukti=tipe_bukti,
             keterangan=keterangan,
             ip_address=client_ip,
+            latitude=lat_float,
+            longitude=lon_float,
+            distance_meters=round(distance, 1) if distance else 0.0,
             file_size_bytes=size,
             mime_type=mime,
             waktu_unggah_server=datetime.utcnow()
@@ -283,7 +296,7 @@ def penyelesaian(request_id):
             user_id=current_user.id,
             aksi="SELESAI_IZIN",
             objek=f"LeaveRequest #{leave_req.nomor_tiket}",
-            detail=f"Status: {leave_req.status}, IP: {client_ip}",
+            detail=f"Status: {leave_req.status}, GPS: {lat_float},{lon_float} ({round(distance, 1)}m dari kantor)",
             ip_address=client_ip
         )
         db.session.add(log)
@@ -293,14 +306,14 @@ def penyelesaian(request_id):
             notif = Notification(
                 user_id=current_user.atasan_id,
                 judul="Izin Selesai Dilaporkan",
-                pesan=f"{current_user.nama} telah menyelesaikan izin #{leave_req.nomor_tiket} ({status_text}) dengan bukti kehadiran.",
+                pesan=f"{current_user.nama} telah menyelesaikan izin #{leave_req.nomor_tiket} ({status_text}) dalam radius kantor.",
                 tipe="success",
                 link=f"/atasan/detail/{leave_req.id}"
             )
             db.session.add(notif)
 
         db.session.commit()
-        flash(f"Izin #{leave_req.nomor_tiket} berhasil ditutup. Terima kasih telah mematuhi presensi Unhas.", "success")
+        flash(f"Izin #{leave_req.nomor_tiket} berhasil ditutup. Lokasi GPS dan presensi fisik terverifikasi.", "success")
         return redirect(url_for("pegawai.beranda"))
 
     # Latest evidence if already uploaded
@@ -310,8 +323,7 @@ def penyelesaian(request_id):
         "pegawai/penyelesaian_izin.html",
         leave_req=leave_req,
         client_ip=client_ip,
-        is_office=is_office,
-        network_msg=network_msg,
+        office_geofence=office_geofence,
         latest_evidence=latest_evidence
     )
 

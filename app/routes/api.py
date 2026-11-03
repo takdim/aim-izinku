@@ -3,7 +3,7 @@ from pathlib import Path
 from flask import Blueprint, jsonify, send_from_directory, abort, current_app, request
 from flask_login import login_required, current_user
 from app.models import db, LeaveRequest, Evidence, Notification, Approval, User
-from app.services.network import get_client_ip, is_ip_in_office_network
+from app.services.location import get_client_ip, is_gps_within_office, get_office_geofence
 from app.services.scheduler import check_and_update_leave_statuses
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
@@ -74,14 +74,32 @@ def atasan_persetujuan_data():
         "items": items
     })
 
+@api_bp.route("/check-location", methods=["GET", "POST"])
+def check_location():
+    if request.method == "POST":
+        data = request.get_json(silent=True) or request.form
+        lat = data.get("latitude") or data.get("lat")
+        lon = data.get("longitude") or data.get("lon") or data.get("lng")
+    else:
+        lat = request.args.get("latitude") or request.args.get("lat")
+        lon = request.args.get("longitude") or request.args.get("lon") or request.args.get("lng")
+
+    is_valid, distance, msg, office = is_gps_within_office(lat, lon)
+    return jsonify({
+        "in_radius": is_valid,
+        "distance_meters": round(distance, 1),
+        "message": msg,
+        "office": office,
+        "user_coords": {"latitude": lat, "longitude": lon}
+    })
+
 @api_bp.route("/check-ip")
 def check_ip():
     client_ip = get_client_ip()
-    is_office, msg = is_ip_in_office_network(client_ip)
+    office = get_office_geofence()
     return jsonify({
         "ip": client_ip,
-        "is_office": is_office,
-        "message": msg
+        "office_geofence": office
     })
 
 @api_bp.route("/monitoring-status")

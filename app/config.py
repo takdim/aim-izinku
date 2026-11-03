@@ -18,10 +18,12 @@ class Config:
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB max request payload
     ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp", "pdf"}
     
-    # Office network IP ranges / subnets
-    OFFICE_SUBNETS = [
-        s.strip() for s in os.getenv("OFFICE_SUBNETS", "127.0.0.1,::1,10.15.22.0/24,192.168.0.0/16").split(",") if s.strip()
-    ]
+    # Office GPS Geofence & Radius
+    OFFICE_LATITUDE = float(os.getenv("OFFICE_LATITUDE", "-5.230188"))
+    OFFICE_LONGITUDE = float(os.getenv("OFFICE_LONGITUDE", "119.503378"))
+    OFFICE_RADIUS_METERS = float(os.getenv("OFFICE_RADIUS_METERS", "500.0"))
+    OFFICE_NAME = os.getenv("OFFICE_NAME", "Kampus Fakultas Teknik Unhas Gowa")
     
     # Dev bypass
+    DEV_BYPASS_GPS_CHECK = os.getenv("DEV_BYPASS_GPS_CHECK", "false").lower() in ("true", "1", "yes")
     DEV_BYPASS_IP_CHECK = os.getenv("DEV_BYPASS_IP_CHECK", "false").lower() in ("true", "1", "yes")

@@ -69,40 +69,101 @@
       <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-container shadow-sm flex flex-col gap-1">
         <h1 class="font-display font-bold text-2xl text-primary tracking-tight">Konfigurasi Parameter Sistem</h1>
         <p class="text-xs sm:text-sm text-on-surface-variant">
-          Atur rentang alamat IP subnet kantor yang sah untuk validasi kepulangan pegawai, jam operasional kantor, dan opsi pengujian.
+          Atur titik koordinat GPS kantor dan radius geofence untuk validasi kepulangan pegawai, jam kerja, dan retensi data.
         </p>
       </div>
 
       <form action="{{ url_for('admin.settings') }}" method="POST" class="p-6 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm flex flex-col gap-5">
         
-        <!-- Office Subnet CIDR -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-secondary text-[18px]">lan</span>
-            Rentang IP Jaringan Kantor Resmi (Subnet CIDR)
-          </label>
-          <textarea
-            name="office_subnets"
-            rows="3"
-            required
-            class="w-full p-3.5 rounded-xl bg-surface-container-low border border-outline-variant font-mono text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary leading-relaxed"
-          >{{ settings.get('office_subnets', '10.15.22.0/24, 127.0.0.1, ::1, 192.168.0.0/16') }}</textarea>
-          <p class="text-[11px] text-on-surface-variant">
-            Pisahkan setiap subnet IP atau alamat IP spesifik dengan tanda koma (contoh: <code>10.15.22.0/24, 192.168.1.0/24, 127.0.0.1</code>).
-          </p>
+        <!-- Office GPS Geofence Settings -->
+        <div class="flex flex-col gap-3 p-4 rounded-xl bg-surface-container-low border border-surface-container">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-container pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary text-[22px]">location_on</span>
+              <div>
+                <span class="text-xs font-bold text-primary uppercase tracking-wider block">Titik Pusat GPS & Radius Kantor (Geofencing)</span>
+                <span class="text-[11px] text-on-surface-variant">Validasi kehadiran fisik pegawai berdasarkan radius GPS dari titik pusat kampus.</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onclick="detectCurrentLocation()"
+              id="btn-detect-gps"
+              class="px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-secondary text-xs font-semibold border border-outline-variant flex items-center gap-1.5 shrink-0 self-start sm:self-auto"
+            >
+              <span class="material-symbols-outlined text-[16px]">my_location</span>
+              <span>Gunakan Lokasi Saya</span>
+            </button>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-bold text-on-surface">Nama Lokasi / Area Kampus</label>
+            <input
+              type="text"
+              name="office_name"
+              id="office_name"
+              required
+              value="{{ settings.get('office_name', 'Kampus Fakultas Teknik Unhas Gowa') }}"
+              class="h-10 px-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-on-surface">Latitude Titik Pusat</label>
+              <input
+                type="text"
+                step="any"
+                name="office_latitude"
+                id="office_latitude"
+                required
+                value="{{ settings.get('office_latitude', '-5.230188') }}"
+                class="h-10 px-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant font-mono text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+                placeholder="-5.230188"
+              />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-on-surface">Longitude Titik Pusat</label>
+              <input
+                type="text"
+                step="any"
+                name="office_longitude"
+                id="office_longitude"
+                required
+                value="{{ settings.get('office_longitude', '119.503378') }}"
+                class="h-10 px-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant font-mono text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+                placeholder="119.503378"
+              />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="text-xs font-bold text-on-surface">Radius Toleransi (Meter)</label>
+              <input
+                type="number"
+                name="office_radius_meters"
+                id="office_radius_meters"
+                required
+                min="10"
+                max="50000"
+                value="{{ settings.get('office_radius_meters', '500') }}"
+                class="h-10 px-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant font-mono text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary"
+                placeholder="500"
+              />
+            </div>
+          </div>
+          <div id="gps-status-feedback" class="text-[11px] text-on-surface-variant font-mono pt-1"></div>
         </div>
 
-        <!-- Dev Bypass IP Check Toggle -->
+        <!-- Dev Bypass GPS Check Toggle -->
         <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between gap-4">
           <div class="flex flex-col gap-0.5">
-            <span class="text-xs font-bold text-primary">Mode Dev: Bypass Pengecekan Subnet IP</span>
+            <span class="text-xs font-bold text-primary">Mode Dev: Bypass Pengecekan GPS Geofence</span>
             <span class="text-[11px] text-on-surface-variant">
-              Jika diaktifkan, pegawai dapat mengonfirmasi kepulangan dari IP manapun tanpa diblokir (sangat berguna untuk demonstrasi & pengujian).
+              Jika diaktifkan, pegawai dapat mengonfirmasi kepulangan dari koordinat manapun tanpa diblokir radius (sangat berguna untuk demonstrasi & pengujian).
             </span>
           </div>
-          <select name="dev_bypass_ip_check" class="h-10 px-3 rounded-lg border border-outline-variant text-xs font-semibold bg-surface-container-lowest text-primary">
-            <option value="true" {% if settings.get('dev_bypass_ip_check') == 'true' %}selected{% endif %}>Aktif (Bypass)</option>
-            <option value="false" {% if settings.get('dev_bypass_ip_check') == 'false' %}selected{% endif %}>Nonaktif (Wajib IP Kantor)</option>
+          <select name="dev_bypass_gps_check" class="h-10 px-3 rounded-lg border border-outline-variant text-xs font-semibold bg-surface-container-lowest text-primary">
+            <option value="true" {% if settings.get('dev_bypass_gps_check') == 'true' %}selected{% endif %}>Aktif (Bypass Radius)</option>
+            <option value="false" {% if settings.get('dev_bypass_gps_check') != 'true' %}selected{% endif %}>Nonaktif (Wajib Radius Kantor)</option>
           </select>
         </div>
 
@@ -147,4 +208,39 @@
     </main>
   </div>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  function detectCurrentLocation() {
+    const feedback = document.getElementById('gps-status-feedback');
+    const btn = document.getElementById('btn-detect-gps');
+    if (!navigator.geolocation) {
+      if (feedback) feedback.innerText = 'Browser Anda tidak mendukung geolokasi GPS.';
+      return;
+    }
+    if (btn) btn.disabled = true;
+    if (feedback) feedback.innerText = 'Mengambil koordinat GPS dari perangkat Anda...';
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude.toFixed(6);
+        const lon = pos.coords.longitude.toFixed(6);
+        document.getElementById('office_latitude').value = lat;
+        document.getElementById('office_longitude').value = lon;
+        if (feedback) {
+          feedback.innerHTML = `<span class="text-emerald-700 font-semibold">✓ Berhasil diset ke lokasi Anda saat ini: Lat ${lat}, Lon ${lon} (Akurasi: ±${Math.round(pos.coords.accuracy)}m)</span>`;
+        }
+        if (btn) btn.disabled = false;
+      },
+      (err) => {
+        if (feedback) {
+          feedback.innerHTML = `<span class="text-error font-semibold">Gagal mengambil GPS: ${err.message}. Pastikan izin lokasi diberikan.</span>`;
+        }
+        if (btn) btn.disabled = false;
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+  }
+</script>
 {% endblock %}

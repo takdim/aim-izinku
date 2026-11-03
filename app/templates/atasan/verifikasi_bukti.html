@@ -105,7 +105,13 @@
             <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent pointer-events-none"></div>
             <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-mono flex items-center justify-between">
               <span>{{ e.waktu_unggah_server.strftime("%H:%M:%S") }} WITA</span>
+              {% if e.latitude %}
+              <span class="px-2 py-0.5 rounded bg-black/50 backdrop-blur text-[10px] text-emerald-300">
+                GPS {{ "%.4f"|format(e.latitude) }}, {{ "%.4f"|format(e.longitude) }} ({{ e.distance_meters|int }}m)
+              </span>
+              {% else %}
               <span class="px-2 py-0.5 rounded bg-black/40 backdrop-blur text-[10px]">IP: {{ e.ip_address }}</span>
+              {% endif %}
             </div>
           </div>
 

@@ -61,10 +61,13 @@ def toggle_user(user_id):
 @admin_bp.route("/settings", methods=["GET", "POST"])
 def settings():
     if request.method == "POST":
-        subnets = request.form.get("office_subnets", "").strip()
-        bypass = request.form.get("dev_bypass_ip_check", "false")
-        jam_kerja = request.form.get("jam_kerja", "08:00 - 16:00")
-        masa_simpan = request.form.get("masa_simpan_bukti", "365")
+        office_lat = request.form.get("office_latitude", "-5.230188").strip()
+        office_lon = request.form.get("office_longitude", "119.503378").strip()
+        office_radius = request.form.get("office_radius_meters", "500").strip()
+        office_name = request.form.get("office_name", "Kampus Fakultas Teknik Unhas Gowa").strip()
+        bypass_gps = request.form.get("dev_bypass_gps_check", "false")
+        jam_kerja = request.form.get("jam_kerja", "08:00 - 16:00 WITA").strip()
+        masa_simpan = request.form.get("masa_simpan_bukti", "365").strip()
 
         # Save to SystemSetting table
         def upsert_setting(k, v, desc=""):
@@ -75,13 +78,16 @@ def settings():
             else:
                 s.value = v
 
-        upsert_setting("office_subnets", subnets, "Daftar Subnet IP Kantor yang valid")
-        upsert_setting("dev_bypass_ip_check", bypass, "Mode Dev Bypass Pengecekan IP")
+        upsert_setting("office_latitude", office_lat, "Titik Latitude Kantor Resmi")
+        upsert_setting("office_longitude", office_lon, "Titik Longitude Kantor Resmi")
+        upsert_setting("office_radius_meters", office_radius, "Radius Toleransi Lokasi Kantor (Meter)")
+        upsert_setting("office_name", office_name, "Nama Lokasi / Area Kampus Resmi")
+        upsert_setting("dev_bypass_gps_check", bypass_gps, "Mode Dev Bypass Pengecekan GPS Geofence")
         upsert_setting("jam_kerja", jam_kerja, "Rentang Jam Kerja Resmi Unhas")
         upsert_setting("masa_simpan_bukti", masa_simpan, "Masa Simpan Bukti Foto (Hari)")
 
         db.session.commit()
-        flash("Pengaturan sistem berhasil diperbarui.", "success")
+        flash("Pengaturan sistem & geofence GPS berhasil diperbarui.", "success")
         return redirect(url_for("admin.settings"))
 
     # Load current settings
